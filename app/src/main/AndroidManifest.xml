@@ -24,7 +24,12 @@
         </activity>
         <meta-data
             android:name = "API_KEY"
-            android:value = "$(API_KEY)" />
+            android:value = "$(API_KEY)"
+            />
+        <meta-data
+            android:name= "API_SECRET"
+            android:value = "$(API_SECRET)"
+            />
         />
     </application>
 

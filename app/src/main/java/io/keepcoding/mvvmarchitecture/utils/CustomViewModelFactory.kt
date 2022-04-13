@@ -18,7 +18,11 @@ class CustomViewModelFactory(private val application: Application) : ViewModelPr
     init {
         application.applicationContext.packageManager.getApplicationInfo(application.applicationContext.packageName, PackageManager.GET_META_DATA).metaData.getString("API_KEY")?.let {
             key ->
-            ApiKey(apiKey = key)
+            Api.API_KEY = key
+        }
+        application.applicationContext.packageManager.getApplicationInfo(application.applicationContext.packageName, PackageManager.GET_META_DATA).metaData.getString("API_SECRET")?.let {
+                secret ->
+            Api.API_SECRET = secret
         }
     }
     override fun <T : ViewModel> create(modelClass: Class<T>) : T {
