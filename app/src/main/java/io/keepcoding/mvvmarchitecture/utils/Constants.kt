@@ -1,7 +1,9 @@
 package io.keepcoding.mvvmarchitecture.utils
 
+
 const val REQUEST_CODE = 100
 
 object ApiKey {
-    const val API_KEY = "DEMO_KEY"
+    var API_KEY = ""
+    const val API_BASE_URL = "https://test.api.amadeus.com/"
 }
