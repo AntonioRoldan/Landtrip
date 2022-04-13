@@ -1,16 +1,19 @@
 package io.keepcoding.mvvmarchitecture.repository.remote
 
-// import io.keepcoding.mvvmarchitecture.domain.ApiResponse (Our POJO class)
+import io.keepcoding.mvvmarchitecture.domain.TokenResponse
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Query
+import io.keepcoding.mvvmarchitecture.utils.ApiKey
+import retrofit2.http.*
+
 // We create one for each API
 
 interface Api {
-    //TODO: Write
-    // @GET("APIURL")
-    // @Headers("Content-Type: application/json", "Example api key: INSERTAPIKEY")
-    // suspend fun getData(Query("q") q: String) : ApiResponse
+    @FormUrlEncoded
+    @POST("security/oauth2/token")
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    suspend fun getData(@Query("grant_type") grantType: String,
+                        @Query("client_id") clientId: String,
+                        @Query("client_secret") clientSecret: String
+                        ) : TokenResponse
 
 }
