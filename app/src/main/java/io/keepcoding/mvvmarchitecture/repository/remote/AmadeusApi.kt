@@ -8,7 +8,7 @@ import retrofit2.http.*
 // We create one for each API
 
 interface AmadeusApi {
-    //TODO: Add photos API
+    //TODO: Add photos API, wikipedia api for city detail and here api (to get geolocation from city name)
     @FormUrlEncoded
     @POST("security/oauth2/token")
     @Headers("Content-Type: application/x-www-form-urlencoded")

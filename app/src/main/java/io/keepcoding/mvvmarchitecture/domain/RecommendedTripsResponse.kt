@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class RecommendedTripsResponse(
 
 	@field:SerializedName("data")
-	val data: List<ToursAndActivitiesDataItem?>? = null,
+	val data: List<DataItem?>? = null,
 
 	@field:SerializedName("meta")
-	val meta: ToursAndActivitiesMeta? = null
+	val meta: Meta? = null
 )
 
 data class GeoCode(
@@ -32,7 +32,7 @@ data class DataItem(
 	val name: String? = null,
 
 	@field:SerializedName("geoCode")
-	val geoCode: ToursAndActivitiesGeoCode? = null,
+	val geoCode: GeoCode? = null,
 
 	@field:SerializedName("type")
 	val type: String? = null,
