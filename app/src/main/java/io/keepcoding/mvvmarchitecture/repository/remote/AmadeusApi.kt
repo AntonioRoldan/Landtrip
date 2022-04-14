@@ -1,14 +1,12 @@
 package io.keepcoding.mvvmarchitecture.repository.remote
 
-import io.keepcoding.mvvmarchitecture.domain.RecommendedTripsResponse
-import io.keepcoding.mvvmarchitecture.domain.TokenResponse
-import io.keepcoding.mvvmarchitecture.domain.ToursAndActivitiesResponse
+import io.keepcoding.mvvmarchitecture.domain.*
 import retrofit2.http.*
 
 // We create one for each API
 
 interface AmadeusApi {
-    //TODO: Add photos API, wikipedia api for city detail and here api (to get geolocation from city name)
+    //TODO: Add photos API, and here api (to get geolocation from city name)
     @FormUrlEncoded
     @POST("security/oauth2/token")
     @Headers("Content-Type: application/x-www-form-urlencoded")
@@ -32,6 +30,11 @@ interface AmadeusApi {
     @Headers("Content-Type: application/json")
     suspend fun fetchPointsOfInterest(@Header("Authorization") authorization: String,
                                       @Query("latitude") latitude: Number,
-                                      @Query("longitude") longitude: Number)
-    //TODO: Add activity id, points of interest
+                                      @Query("longitude") longitude: Number) : PointsOfInterestResponse//TODO: Check if the example from api reference was right
+
+    @GET("shopping/activities")
+    @Headers("Content-Type: application/json")
+    suspend fun fetchActivityById(@Header("Authorization") authorization: String,
+                                  @Path("activityId") activityId: String) : ToursAndActivitiesByIdResponse
+
 }
