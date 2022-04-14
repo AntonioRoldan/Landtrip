@@ -5,10 +5,10 @@ import retrofit2.http.*
 
 interface GeoLocationApi {
 
-    @GET("geocode")
+    @GET("direct")
     @Headers("Content-Type: application/json")
-    suspend fun fetchGeoLocationFromCity(@Header("Authorization") authorization: String,
+    suspend fun fetchGeoLocationFromCity(
                                          @Query("q") cityName: String,
-                                         @Query("apiKey") apiKey: String) : GeoLocationResponse
+                                         @Query("appid") apiKey: String) : GeoLocationResponse
 
 }

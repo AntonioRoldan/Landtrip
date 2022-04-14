@@ -13,5 +13,5 @@ object Api {
     const val IMAGES_API_BASE_URL = "https://api.unsplash.com/"
     var GEOLOCATION_API_KEY = ""
     var GEOLOCATION_API_SECRET = ""
-    const val GEOLOCATION_API_BASE_URL = "https://geocode.search.hereapi.com/v1/"
+    const val GEOLOCATION_API_BASE_URL = "http://api.openweathermap.org/geo/1.0/"
 }
