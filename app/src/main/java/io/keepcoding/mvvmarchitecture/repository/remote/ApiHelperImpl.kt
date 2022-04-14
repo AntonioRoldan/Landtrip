@@ -4,7 +4,12 @@ import io.keepcoding.mvvmarchitecture.domain.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ApiHelperImpl(private val amadeusService: AmadeusApi, private val imagesService: ImagesApi, private val geoLocationService: GeoLocationApi) : ApiHelper {
+class ApiHelperImpl() : ApiHelper {
+
+    private val amadeusService: AmadeusApi = RemoteDataManager().amadeusApi
+    private val imagesService: ImagesApi = RemoteDataManager().imagesApi
+    private val geoLocationService: GeoLocationApi = RemoteDataManager().geoLocationApi
+
     override suspend fun fetchToken(
         grantType: String,
         clientId: String,
