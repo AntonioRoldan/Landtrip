@@ -17,6 +17,10 @@ class CustomViewModelFactory(private val application: Application) : ViewModelPr
     private val localHelper: LocalHelper = LocalHelperImpl(context = application.applicationContext)
 
     init {
+        this.setConstants()
+    }
+
+    private fun setConstants() {
         application.applicationContext.packageManager.getApplicationInfo(
             application.applicationContext.packageName,
             PackageManager.GET_META_DATA
@@ -40,6 +44,18 @@ class CustomViewModelFactory(private val application: Application) : ViewModelPr
             PackageManager.GET_META_DATA
         ).metaData.getString("IMAGES_API_SECRET")?.let { secret ->
             Api.IMAGES_API_SECRET = secret
+        }
+        application.applicationContext.packageManager.getApplicationInfo(
+            application.applicationContext.packageName,
+            PackageManager.GET_META_DATA
+        ).metaData.getString("GEOLOCATION_API_KEY")?.let { key ->
+            Api.GEOLOCATION_API_KEY = key
+        }
+        application.applicationContext.packageManager.getApplicationInfo(
+            application.applicationContext.packageName,
+            PackageManager.GET_META_DATA
+        ).metaData.getString("GEOLOCATION_API_SECRET")?.let { secret ->
+            Api.GEOLOCATION_API_SECRET = secret
         }
     }
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
