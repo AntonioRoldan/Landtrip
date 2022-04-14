@@ -10,5 +10,4 @@ interface GeoLocationApi {
     suspend fun fetchGeoLocationFromCity(
                                          @Query("q") cityName: String,
                                          @Query("appid") apiKey: String) : GeoLocationResponse
-
 }

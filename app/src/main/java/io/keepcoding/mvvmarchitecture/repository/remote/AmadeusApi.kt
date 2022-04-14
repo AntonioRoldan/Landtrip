@@ -10,7 +10,7 @@ interface AmadeusApi {
     @FormUrlEncoded
     @POST("security/oauth2/token")
     @Headers("Content-Type: application/x-www-form-urlencoded")
-    suspend fun fetchToken(@Field("grant_type") grantType: String,
+    suspend fun fetchToken(@Field("grant_type") grantType: String, // Set to client_credentials
                            @Field("client_id") clientId: String, //Api key
                            @Field("client_secret") clientSecret: String //Api secret
                         ) : TokenResponse
@@ -26,15 +26,17 @@ interface AmadeusApi {
                                         @Query("latitude") latitude: Number,
                                         @Query("longitude") longitude: Number) : ToursAndActivitiesResponse
 
+    @GET("shopping/activities")
+    @Headers("Content-Type: application/json")
+    suspend fun fetchActivityById(@Header("Authorization") authorization: String,
+                                  @Path("activityId") activityId: String) : ToursAndActivitiesByIdResponse
+
+
     @GET("reference-data/locations/pois")
     @Headers("Content-Type: application/json")
     suspend fun fetchPointsOfInterest(@Header("Authorization") authorization: String,
                                       @Query("latitude") latitude: Number,
                                       @Query("longitude") longitude: Number) : PointsOfInterestResponse//TODO: Check if the example from api reference was right
 
-    @GET("shopping/activities")
-    @Headers("Content-Type: application/json")
-    suspend fun fetchActivityById(@Header("Authorization") authorization: String,
-                                  @Path("activityId") activityId: String) : ToursAndActivitiesByIdResponse
-
 }
+
