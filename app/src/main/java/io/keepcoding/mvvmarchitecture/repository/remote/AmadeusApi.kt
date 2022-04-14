@@ -19,11 +19,19 @@ interface AmadeusApi {
 
     @GET("reference-data/recommended-locations")
     @Headers("Content-Type: application/json")
-    suspend fun fetchRecommendedTrips(@Header("Authorization") authorization: String, @Query("cityCodes") cityCodes: String) : RecommendedTripsResponse
+    suspend fun fetchRecommendedTrips(@Header("Authorization") authorization: String,
+                                      @Query("cityCodes") cityCodes: String) : RecommendedTripsResponse
 
     @GET("shopping/activities")
     @Headers("Content-Type: application/json")
-    suspend fun fetchToursAndActivities(@Header("Authorization") authorization: String, @Query("latitude") latitude: Number, @Query("longitude") longitude: Number) : ToursAndActivitiesResponse
+    suspend fun fetchToursAndActivities(@Header("Authorization") authorization: String,
+                                        @Query("latitude") latitude: Number,
+                                        @Query("longitude") longitude: Number) : ToursAndActivitiesResponse
 
+    @GET("reference-data/locations/pois")
+    @Headers("Content-Type: application/json")
+    suspend fun fetchPointsOfInterest(@Header("Authorization") authorization: String,
+                                      @Query("latitude") latitude: Number,
+                                      @Query("longitude") longitude: Number)
     //TODO: Add activity id, points of interest
 }

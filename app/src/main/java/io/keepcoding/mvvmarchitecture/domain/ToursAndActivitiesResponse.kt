@@ -53,7 +53,7 @@ data class ToursAndActivitiesDataItem(
 	val rating: String? = null,
 
 	@field:SerializedName("self")
-	val self: Self? = null,
+	val self: PointsOfInterestSelf? = null,
 
 	@field:SerializedName("geoCode")
 	val geoCode: ToursAndActivitiesGeoCode? = null,
