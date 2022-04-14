@@ -10,9 +10,9 @@ interface AmadeusApi {
     @FormUrlEncoded
     @POST("security/oauth2/token")
     @Headers("Content-Type: application/x-www-form-urlencoded")
-    suspend fun fetchToken(@Query("grant_type") grantType: String,
-                        @Query("client_id") clientId: String, //Api key
-                        @Query("client_secret") clientSecret: String //Api secret
+    suspend fun fetchToken(@Field("grant_type") grantType: String,
+                           @Field("client_id") clientId: String, //Api key
+                           @Field("client_secret") clientSecret: String //Api secret
                         ) : TokenResponse
 
     @GET("reference-data/recommended-locations")

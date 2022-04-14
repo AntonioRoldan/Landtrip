@@ -15,20 +15,41 @@ import java.lang.IllegalArgumentException
 class CustomViewModelFactory(private val application: Application) : ViewModelProvider.NewInstanceFactory() {
     private val apiHelper: ApiHelper = ApiHelperImpl()
     private val localHelper: LocalHelper = LocalHelperImpl(context = application.applicationContext)
+
     init {
-        application.applicationContext.packageManager.getApplicationInfo(application.applicationContext.packageName, PackageManager.GET_META_DATA).metaData.getString("API_KEY")?.let {
-            key ->
-            Api.API_KEY = key
+        application.applicationContext.packageManager.getApplicationInfo(
+            application.applicationContext.packageName,
+            PackageManager.GET_META_DATA
+        ).metaData.getString("AMADEUS_API_KEY")?.let { key ->
+            Api.AMADEUS_API_KEY = key
         }
-        application.applicationContext.packageManager.getApplicationInfo(application.applicationContext.packageName, PackageManager.GET_META_DATA).metaData.getString("API_SECRET")?.let {
-                secret ->
-            Api.API_SECRET = secret
+        application.applicationContext.packageManager.getApplicationInfo(
+            application.applicationContext.packageName,
+            PackageManager.GET_META_DATA
+        ).metaData.getString("AMADEUS_API_SECRET")?.let { secret ->
+            Api.AMADEUS_API_SECRET = secret
+        }
+        application.applicationContext.packageManager.getApplicationInfo(
+            application.applicationContext.packageName,
+            PackageManager.GET_META_DATA
+        ).metaData.getString("IMAGES_API_KEY")?.let { key ->
+            Api.IMAGES_API_KEY = key
+        }
+        application.applicationContext.packageManager.getApplicationInfo(
+            application.applicationContext.packageName,
+            PackageManager.GET_META_DATA
+        ).metaData.getString("IMAGES_API_SECRET")?.let { secret ->
+            Api.IMAGES_API_SECRET = secret
         }
     }
-    override fun <T : ViewModel> create(modelClass: Class<T>) : T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return with(modelClass) {
             when {
-                isAssignableFrom(FragmentOrActivityViewModel::class.java) -> FragmentOrActivityViewModel(application, apiHelper, localHelper)
+                isAssignableFrom(FragmentOrActivityViewModel::class.java) -> FragmentOrActivityViewModel(
+                    application,
+                    apiHelper,
+                    localHelper
+                )
                 else -> throw IllegalArgumentException("Unknown ViewModel")
             }
         } as T

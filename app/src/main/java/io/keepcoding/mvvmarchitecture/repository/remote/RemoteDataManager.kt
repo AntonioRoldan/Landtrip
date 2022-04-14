@@ -1,13 +1,18 @@
 package io.keepcoding.mvvmarchitecture.repository.remote
 
+import io.keepcoding.mvvmarchitecture.utils.Api
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 class RemoteDataManager {
 
-    //TODO: Insert Api as val api: Api
+    val amadeusApi: AmadeusApi
+    val imagesApi: ImagesApi
+    val geoLocationApi: GeoLocationApi
 
     init {
         val timeout: Long = 6 * 1000
@@ -22,13 +27,23 @@ class RemoteDataManager {
             .addInterceptor(logging)
             .build()
 
-        //TODO: Add api like this
-        // val retrofitAPINAME = Retrofit.Builder()
-        //      .addConverterFactory(GsonConverterFactory.create())
-        //      .baseUrl("APIBASEURL")
-        //      .build()
-        //
-        //
-        // api = retrofitAPINAME.create(Api::class.java)
+        val retrofitAmadeusApi = Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(Api.AMADEUS_API_BASE_URL)
+        .build()
+
+        val retrofitImagesApi = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(Api.IMAGES_API_BASE_URL)
+            .build()
+
+        val retrofitGeoLocationApi = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(Api.GEOLOCATION_API_BASE_URL)
+            .build()
+
+        amadeusApi = retrofitAmadeusApi.create(AmadeusApi::class.java)
+        imagesApi = retrofitImagesApi.create(ImagesApi::class.java)
+        geoLocationApi = retrofitGeoLocationApi.create(GeoLocationApi::class.java)
     }
 }

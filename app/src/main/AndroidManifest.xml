@@ -23,14 +23,29 @@
             </intent-filter>
         </activity>
         <meta-data
-            android:name = "API_KEY"
-            android:value = "$(API_KEY)"
+            android:name = "AMADEUS_API_KEY"
+            android:value = "$(AMADEUS_API_KEY)"
             />
         <meta-data
-            android:name= "API_SECRET"
-            android:value = "$(API_SECRET)"
+            android:name= "AMADEUS_API_SECRET"
+            android:value = "$(AMADEUS_API_SECRET)"
             />
-        />
+        <meta-data
+            android:name="IMAGES_API_KEY"
+            android:value="$(IMAGES_API_KEY)"
+            />
+        <meta-data
+            android:name="IMAGES_API_SECRET"
+            android:value="$(IMAGES_API_SECRET)"
+            />
+        <meta-data
+            android:name="GEOLOCATION_API_KEY"
+            android:value="$(GEOLOCATION_API_KEY)"
+            />
+        <meta-data
+            android:name="GEOLOCATION_API_SECRET"
+            android:value="$(GEOLOCATION_API_SECRET)"
+            />
     </application>
 
 </manifest>
