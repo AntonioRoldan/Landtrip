@@ -40,16 +40,16 @@ data class PointsOfInterestGeoCode(
 
 data class PointsOfInterestDataItem(
 
-	@field:SerializedName("name")
+	@field:SerializedName("name") //TODO: Show this
 	val name: String? = null,
 
 	@field:SerializedName("self")
 	val self: PointsOfInterestSelf? = null,
 
-	@field:SerializedName("geoCode")
+	@field:SerializedName("geoCode") //TODO: Use this for detail screen's map
 	val geoCode: PointsOfInterestGeoCode? = null,
 
-	@field:SerializedName("rank")
+	@field:SerializedName("rank") //TODO: Show this
 	val rank: Int? = null,
 
 	@field:SerializedName("subType")
@@ -61,10 +61,10 @@ data class PointsOfInterestDataItem(
 	@field:SerializedName("type")
 	val type: String? = null,
 
-	@field:SerializedName("category")
+	@field:SerializedName("category") //TODO: Show this
 	val category: String? = null,
 
-	@field:SerializedName("tags")
+	@field:SerializedName("tags") //TODO: Show some tags
 	val tags: List<String?>? = null
 )
 

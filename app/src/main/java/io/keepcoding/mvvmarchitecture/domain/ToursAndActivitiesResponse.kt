@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class ToursAndActivitiesResponse(
 
 	@field:SerializedName("data")
-	val data: List<ToursAndActivitiesDataItem?>? = null,
+	val data: List<ToursAndActivitiesDataItem?>? = null, //TODO: for element in data
 
 	@field:SerializedName("meta")
 	val meta: ToursAndActivitiesMeta? = null
@@ -40,16 +40,16 @@ data class ToursAndActivitiesPrice(
 
 data class ToursAndActivitiesDataItem(
 
-	@field:SerializedName("bookingLink")
+	@field:SerializedName("bookingLink") //TODO: Show this field in activity id
 	val bookingLink: String? = null,
 
-	@field:SerializedName("price")
+	@field:SerializedName("price") //TODO: Show this field
 	val price: ToursAndActivitiesPrice? = null,
 
-	@field:SerializedName("name")
+	@field:SerializedName("name") //TODO: Show this field
 	val name: String? = null,
 
-	@field:SerializedName("rating")
+	@field:SerializedName("rating") //TODO: Show this field
 	val rating: String? = null,
 
 	@field:SerializedName("self")
@@ -58,16 +58,16 @@ data class ToursAndActivitiesDataItem(
 	@field:SerializedName("geoCode")
 	val geoCode: ToursAndActivitiesGeoCode? = null,
 
-	@field:SerializedName("id")
+	@field:SerializedName("id") // TODO: Use this field to show activity by id
 	val id: String? = null,
 
-	@field:SerializedName("shortDescription")
+	@field:SerializedName("shortDescription") //TODO: Show this field in activity id
 	val shortDescription: String? = null,
 
 	@field:SerializedName("type")
 	val type: String? = null,
 
-	@field:SerializedName("pictures")
+	@field:SerializedName("pictures") // TODO: Show this field in activity id
 	val pictures: List<String?>? = null
 )
 

@@ -31,22 +31,22 @@ data class RecommendedTripsGeoCode(
 
 data class RecommendedTripsDataItem(
 
-	@field:SerializedName("iataCode")
+	@field:SerializedName("iataCode") //TODO: V2.0 Use this for flight search
 	val iataCode: String? = null,
 
-	@field:SerializedName("subtype")
+	@field:SerializedName("subtype") //TODO: Use this for image search
 	val subtype: String? = null,
 
-	@field:SerializedName("name")
+	@field:SerializedName("name") //TODO: Show and use this for image search
 	val name: String? = null,
 
 	@field:SerializedName("geoCode")
-	val geoCode: RecommendedTripsGeoCode? = null,
+	val geoCode: RecommendedTripsGeoCode? = null, //TODO: Use this to show activities and points of interest
 
 	@field:SerializedName("type")
 	val type: String? = null,
 
-	@field:SerializedName("relevance")
+	@field:SerializedName("relevance") //TODO: Show this
 	val relevance: Double? = null
 )
 

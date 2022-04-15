@@ -10,7 +10,7 @@ data class ImagesResponse(
 	@field:SerializedName("total_pages")
 	val totalPages: Int? = null,
 
-	@field:SerializedName("results")
+	@field:SerializedName("results") //TODO: For each in results, result.urls.raw
 	val results: List<ResultsItem?>? = null
 )
 
@@ -85,7 +85,7 @@ data class Urls(
 	@field:SerializedName("thumb")
 	val thumb: String? = null,
 
-	@field:SerializedName("raw") //We extract URL from here
+	@field:SerializedName("raw") //TODO: Use this to get image
 	val raw: String? = null,
 
 	@field:SerializedName("regular")
@@ -112,7 +112,7 @@ data class ResultsItem(
 	@field:SerializedName("liked_by_user")
 	val likedByUser: Boolean? = null,
 
-	@field:SerializedName("urls")
+	@field:SerializedName("urls") //TODO: Use this urls.raw
 	val urls: Urls? = null,
 
 	@field:SerializedName("width")

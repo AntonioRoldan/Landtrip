@@ -133,18 +133,18 @@ data class GeoLocationResponseItem(
 	@field:SerializedName("local_names")
 	val localNames: LocalNames? = null,
 
-	@field:SerializedName("country")
+	@field:SerializedName("country") // TODO: Show this field
 	val country: String? = null,
 
-	@field:SerializedName("name")
+	@field:SerializedName("name") //TODO: Show this field
 	val name: String? = null,
 
-	@field:SerializedName("lon")
+	@field:SerializedName("lon") //TODO: Use this field
 	val lon: Double? = null,
 
-	@field:SerializedName("state")
+	@field:SerializedName("state") //TODO: Show this field
 	val state: String? = null,
 
-	@field:SerializedName("lat")
+	@field:SerializedName("lat") //TODO: Use this field
 	val lat: Double? = null
 )

@@ -13,10 +13,10 @@ data class ToursAndActivitiesByIdResponse(
 
 data class ToursAndActivitiesByIdPrice(
 
-	@field:SerializedName("amount")
+	@field:SerializedName("amount") //TODO: Show this
 	val amount: String? = null,
 
-	@field:SerializedName("currencyCode")
+	@field:SerializedName("currencyCode") //TODO: Show this
 	val currencyCode: String? = null
 )
 
@@ -31,34 +31,34 @@ data class ToursAndActivitiesByIdSelf(
 
 data class ToursAndActivitiesByIdData(
 
-	@field:SerializedName("bookingLink")
+	@field:SerializedName("bookingLink") //TODO: Show this
 	val bookingLink: String? = null,
 
-	@field:SerializedName("price")
+	@field:SerializedName("price") //TODO: Show this price.amount and price.currencyCode
 	val price: ToursAndActivitiesByIdPrice? = null,
 
-	@field:SerializedName("name")
+	@field:SerializedName("name") //TODO: Show this
 	val name: String? = null,
 
-	@field:SerializedName("rating")
+	@field:SerializedName("rating") //TODO: Show this
 	val rating: String? = null,
 
 	@field:SerializedName("self")
 	val self: ToursAndActivitiesByIdSelf? = null,
 
-	@field:SerializedName("geoCode")
+	@field:SerializedName("geoCode") //TODO: Use this to show map geoCode.latitude geoCode.longitude
 	val geoCode: ToursAndActivitiesByIdGeoCode? = null,
 
 	@field:SerializedName("id")
 	val id: String? = null,
 
-	@field:SerializedName("shortDescription")
+	@field:SerializedName("shortDescription") //TODO: Show this
 	val shortDescription: String? = null,
 
 	@field:SerializedName("type")
 	val type: String? = null,
 
-	@field:SerializedName("pictures")
+	@field:SerializedName("pictures") //TODO: Show pictures on a carousel
 	val pictures: List<String?>? = null
 )
 
