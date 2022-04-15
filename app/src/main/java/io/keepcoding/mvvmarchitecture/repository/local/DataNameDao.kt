@@ -10,7 +10,7 @@ import io.keepcoding.mvvmarchitecture.domain.TripEntity
 abstract class DataNameDao {
     // In order to write variables within our query we do :variablePassedToBelowFunction for example SELECT * FROM table_name WHERE id = :variablePassedToBelowFunction
     @Query("SELECT * FROM trips_table")
-    abstract fun getEntities(): List<TripEntity>
+    abstract fun getTrips(): List<TripEntity>
 
     @Query("SELECT * FROM tours_and_activities_table WHERE tripId = :tripId")
     abstract fun getLocalToursAndActivities(tripId: String) : List<TourActivityEntity>
