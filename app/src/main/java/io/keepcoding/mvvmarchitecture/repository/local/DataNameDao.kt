@@ -1,6 +1,9 @@
 package io.keepcoding.mvvmarchitecture.repository.local
 
+import android.graphics.Point
 import androidx.room.*
+import io.keepcoding.mvvmarchitecture.domain.PointOfInterestEntity
+import io.keepcoding.mvvmarchitecture.domain.TourActivityEntity
 import io.keepcoding.mvvmarchitecture.domain.TripEntity
 
 @Dao
@@ -13,6 +16,18 @@ abstract class DataNameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertEntity(entity: TripEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract fun insertTourActivity(tourActivityEntity: TourActivityEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract fun insertPointOfInterest(pointOfInterest: PointOfInterestEntity)
+
     @Delete
     abstract fun deleteEntity(entity: TripEntity)
+
+    @Delete
+    abstract fun deleteTourActivity(tourActivityEntity: TourActivityEntity)
+
+    @Delete
+    abstract fun deletePointOfInterest(pointOfInterest: PointOfInterestEntity)
 }

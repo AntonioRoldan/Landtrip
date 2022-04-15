@@ -6,8 +6,8 @@ import java.util.*
 
 
 @Entity(tableName = "points_of_interest_table")
-class PointOfInterestEntity {
+data class PointOfInterestEntity(
     @PrimaryKey
-    var id: String = UUID.randomUUID().toString()
+    var id: String = UUID.randomUUID().toString(),
 
-}
+)
