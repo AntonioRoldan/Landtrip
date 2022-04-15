@@ -6,7 +6,13 @@ import java.util.*
 
 // This package contains our retrofit POJO classes
 
-@Entity(tableName = "data_name_table")
-class Entity {
+@Entity(tableName = "trips_table")
+class TripEntity {
+
     @PrimaryKey var id: String = UUID.randomUUID().toString()
+
+    var toursAndActivities: MutableList<TourActivityEntity> = mutableListOf()
+
+    var pointsOfInterest: MutableList<PointOfInterestEntity> = mutableListOf()
+
 }

@@ -17,7 +17,7 @@ interface AmadeusApi {
 
     @GET("reference-data/recommended-locations")
     @Headers("Content-Type: application/json")
-    suspend fun fetchRecommendedTrips(@Header("Authorization") authorization: String,
+    suspend fun fetchRecommendedTrips(@Header("Authorization") authorization: String, // Access token
                                       @Query("cityCodes") cityCodes: String) : RecommendedTripsResponse
 
     @GET("shopping/activities")

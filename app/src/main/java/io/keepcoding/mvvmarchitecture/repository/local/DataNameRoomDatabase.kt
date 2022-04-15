@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import io.keepcoding.mvvmarchitecture.domain.Entity
+import io.keepcoding.mvvmarchitecture.domain.TripEntity
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
 // Each entity is a table with a table name
-@Database(entities = [Entity::class], version = 1, exportSchema = false)
+@Database(entities = [TripEntity::class], version = 1, exportSchema = false)
 abstract class DataNameRoomDatabase : RoomDatabase() {
     abstract fun dataNameDao() : DataNameDao
 
