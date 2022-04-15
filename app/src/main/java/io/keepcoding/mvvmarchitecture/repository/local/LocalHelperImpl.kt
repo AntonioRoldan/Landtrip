@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 class LocalHelperImpl(private val context: Context) : LocalHelper {
 
     @InternalCoroutinesApi
-    private val appDatabase: DataNameRoomDatabase = DataNameRoomDatabase.getInstance(context = context)
+    private val appDatabase: TripsRoomDatabase = TripsRoomDatabase.getInstance(context = context)
 
     @InternalCoroutinesApi
     override suspend fun getEntities(): List<TripEntity> {
