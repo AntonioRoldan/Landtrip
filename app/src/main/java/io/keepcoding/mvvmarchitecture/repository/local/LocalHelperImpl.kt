@@ -27,6 +27,7 @@ class LocalHelperImpl(private val context: Context) : LocalHelper {
         withContext(Dispatchers.IO){
             trip = appDatabase.dataNameDao().getTrip(tripId)
         }
+        return trip
     }
 
     @OptIn(InternalCoroutinesApi::class)
