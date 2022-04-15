@@ -15,5 +15,7 @@ data class TripEntity(
     var toursAndActivities: MutableList<TourActivityEntity> = mutableListOf(),
     @Ignore
     var pointsOfInterest: MutableList<PointOfInterestEntity> = mutableListOf()
-)
+){
+    constructor(id: String, name: String) : this(id, name, mutableListOf(), mutableListOf())
+}
 

@@ -12,8 +12,8 @@ data class TourActivityEntity(
     var name: String,
     var shortDescription: String,
     var rating: Double,
-    var latitude: Number,
-    var longitude: Number,
+    var latitude: Double,
+    var longitude: Double,
     var image: String,
     var finished: Boolean
 )
