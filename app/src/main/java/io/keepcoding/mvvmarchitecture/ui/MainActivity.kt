@@ -3,22 +3,49 @@ package io.keepcoding.mvvmarchitecture.ui
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
 import io.keepcoding.mvvmarchitecture.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        bottomNavigation.setOnItemSelectedListener { item ->
+            val fragment: Fragment
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    fragment = HomeFragment()
+                    loadFragment(fragment)
+                    true
+                }
+                R.id.nav_my_trips -> {
+                    fragment = MyTripsFragment()
+                    loadFragment(fragment)
+                    true
+                }
+                R.id.nav_settings -> {
+                    fragment = SettingsFragment()
+                    loadFragment(fragment)
+                    true
+                }
+                else -> false
+            }
         }
+
+
+    }
+
+    private fun loadFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
