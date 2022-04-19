@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class HomeFragmentViewModel(private val context: Application, private val cityCode: String, private val apiHelper: ApiHelper, private val localHelper: LocalHelper) : ViewModel() {
     // private val POJORetrofitResponses = MutableLiveData<Resource<List<POJORetrofitResponseItemViewModel?>>>() to show it in a recycler view
-    private val recommendedTrips = MutableLiveData<Resource<List<RecommendedTripViewModel>>>()
+    private val recommendedTrips = MutableLiveData<Resource<List<RecommendedTripViewModel?>>>()
 
     fun fetchRecommendedTrips(){
         viewModelScope.launch {
@@ -27,18 +27,25 @@ class HomeFragmentViewModel(private val context: Application, private val cityCo
                     val recommendedTripsResponse = async { apiHelper.fetchRecommendedTrips(authorization = token, cityCodes = cityCode) }
                     val recommendedTripsViewModels: List<RecommendedTripViewModel?>? = recommendedTripsResponse.await().data?.map { recommendedTrip ->
                         val imageUrl: String?
-                        val cityName: String
-                        recommendedTrip?.name?.let { cityName ->
-                            val imageResponse = async { apiHelper.fetchPhotos(authorization = Api.IMAGES_API_KEY, query = recommendedTrip.name) }
+                        recommendedTrip?.let { tripResponseObject ->
+                            val imageResponse = async { apiHelper.fetchPhotos(authorization = Api.IMAGES_API_KEY, query = tripResponseObject.name) }
                             val imageObjectsArray = imageResponse.await().results
                             imageObjectsArray?.let { imageObjects ->
                                 imageUrl = imageObjects[0]?.urls?.raw
                                 imageUrl?.let { image ->
-                                    RecommendedTripViewModel(name = cityName, image = image)
+                                    tripResponseObject.geoCode?.latitude?.let { latitude ->
+                                        tripResponseObject.geoCode.longitude?.let { longitude ->
+                                            tripResponseObject.name?.let { cityName ->
+                                                RecommendedTripViewModel(name = cityName, image = image, latitude = latitude, longitude = longitude)
+                                            }
+                                        }
+
+                                    }
                                 }
                             }
                         }
                     }
+                    recommendedTrips.postValue(Resource.success(recommendedTripsViewModels))
                 }
             } catch (e: Exception) {
                 recommendedTrips.postValue(Resource.error(e.localizedMessage!!, null))
