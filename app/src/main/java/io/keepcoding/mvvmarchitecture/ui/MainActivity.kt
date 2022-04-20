@@ -5,42 +5,48 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import io.keepcoding.mvvmarchitecture.R
 import kotlinx.android.synthetic.main.activity_main.*
 
+@Suppress("CAST_NEVER_SUCCEEDS")
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        val navHostFragment = navHostContainer as NavHostFragment // We suppress cast never succeeds so the compiler does not complain
+        val navController = navHostFragment.navController
+        bottomNavigation.setupWithNavController(navController)
 
-        bottomNavigation.setOnItemSelectedListener { item ->
-            val fragment: Fragment
-            when (item.itemId) {
-                R.id.nav_graph_home -> {
-                    fragment = HomeFragment.newInstance()
-                    loadFragment(fragment)
-                    true
-                }
-                R.id.nav_graph_my_trips -> {
-                    fragment = MyTripsFragment()
-                    loadFragment(fragment)
-                    true
-                }
-                R.id.nav_graph_settings -> {
-                    fragment = SettingsFragment()
-                    loadFragment(fragment)
-                    true
-                }
-                else -> false
-            }
-        }
+       // bottomNavigation.setOnItemSelectedListener { item ->
+        //            val fragment: Fragment
+        //            when (item.itemId) {
+        //                R.id.nav_graph_home -> {
+        //                    fragment = HomeFragment.newInstance()
+        //                    loadFragment(fragment)
+        //                    true
+        //                }
+        //                R.id.nav_graph_my_trips -> {
+        //                    fragment = MyTripsFragment()
+        //                    loadFragment(fragment)
+        //                    true
+        //                }
+        //                R.id.nav_graph_settings -> {
+        //                    fragment = SettingsFragment()
+        //                    loadFragment(fragment)
+        //                    true
+        //                }
+        //                else -> false
+        //            }
+        //        }
     }
 
     private fun loadFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
+            .replace(R.id.navHostContainer, fragment)
             .commit()
     }
 
