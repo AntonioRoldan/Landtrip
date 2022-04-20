@@ -3,7 +3,7 @@ package io.keepcoding.mvvmarchitecture.utils
 
 const val REQUEST_CODE = 100
 
-object Api {
+object Constants {
     var AMADEUS_API_KEY = ""
     var AMADEUS_API_SECRET = ""
     var AMADEUS_TOKEN = ""
@@ -14,4 +14,5 @@ object Api {
     var GEOLOCATION_API_KEY = ""
     var GEOLOCATION_API_SECRET = ""
     const val GEOLOCATION_API_BASE_URL = "http://api.openweathermap.org/geo/1.0/"
+    var CITY_CODE = "MAD"
 }

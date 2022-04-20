@@ -18,9 +18,9 @@ import kotlinx.android.synthetic.main.fragment_first.*
  */
 class FirstFragment : Fragment() {
 
-    private val viewModel: FragmentOrActivityViewModel by lazy {
+    private val viewModel: HomeFragmentViewModel by lazy {
         val factory = CustomViewModelFactory(requireActivity().application)
-        ViewModelProvider(this, factory).get(FragmentOrActivityViewModel::class.java)
+        ViewModelProvider(this, factory)[HomeFragmentViewModel::class.java]
     }
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
