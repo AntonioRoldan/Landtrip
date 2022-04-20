@@ -1,9 +1,6 @@
 package io.keepcoding.mvvmarchitecture.ui
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -16,21 +13,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
 
         bottomNavigation.setOnItemSelectedListener { item ->
             val fragment: Fragment
             when (item.itemId) {
-                R.id.nav_home -> {
-                    fragment = HomeFragment()
+                R.id.nav_graph_home -> {
+                    fragment = HomeFragment.newInstance()
                     loadFragment(fragment)
                     true
                 }
-                R.id.nav_my_trips -> {
+                R.id.nav_graph_my_trips -> {
                     fragment = MyTripsFragment()
                     loadFragment(fragment)
                     true
                 }
-                R.id.nav_settings -> {
+                R.id.nav_graph_settings -> {
                     fragment = SettingsFragment()
                     loadFragment(fragment)
                     true
