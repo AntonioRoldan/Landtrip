@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph_settings">
-
+    xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_settings"
+    app:startDestination="@id/settings_dest">
+<fragment
+    android:id="@+id/settings_dest"
+    android:name="io.keepcoding.mvvmarchitecture.ui.SettingsFragment"
+    android:label="Settings"
+    tool:layout="@layout/fragment_settings"
+    >
+</fragment>
 </navigation>
