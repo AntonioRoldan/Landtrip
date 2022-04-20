@@ -1,6 +1,7 @@
 package io.keepcoding.mvvmarchitecture.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,10 +25,8 @@ class MyTripsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        Log.i("From my trips", "From my trips")
+
     }
 
     override fun onCreateView(
@@ -35,6 +34,8 @@ class MyTripsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        Log.i("From home", "From home")
         return inflater.inflate(R.layout.fragment_my_trips, container, false)
     }
 

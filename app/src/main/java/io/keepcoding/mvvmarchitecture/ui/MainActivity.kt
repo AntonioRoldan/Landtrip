@@ -17,11 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        val navHostFragment = navHostContainer as NavHostFragment // We suppress cast never succeeds so the compiler does not complain
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostContainer) as NavHostFragment // We suppress cast never succeeds so the compiler does not complain
         val navController = navHostFragment.navController
         bottomNavigation.setupWithNavController(navController)
-
-       // bottomNavigation.setOnItemSelectedListener { item ->
+        //bottomNavigation.setOnItemSelectedListener { item ->
         //            val fragment: Fragment
         //            when (item.itemId) {
         //                R.id.nav_graph_home -> {
