@@ -6,12 +6,17 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import io.keepcoding.mvvmarchitecture.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Suppress("CAST_NEVER_SUCCEEDS")
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,14 +46,16 @@ class MainActivity : AppCompatActivity() {
         //                else -> false
         //            }
         //        }
+        appBarConfiguration = AppBarConfiguration.Builder(R.id.home_dest, R.id.my_trips_dest, R.id.settings_dest)
+            .build()
+        setupActionBarWithNavController(navController)
     }
 
-    private fun loadFragment(fragment: Fragment){
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.navHostContainer, fragment)
-            .commit()
-    }
-
+    //private fun loadFragment(fragment: Fragment){
+    //        supportFragmentManager.beginTransaction()
+    //            .replace(R.id.navHostContainer, fragment)
+    //            .commit()
+    //    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)

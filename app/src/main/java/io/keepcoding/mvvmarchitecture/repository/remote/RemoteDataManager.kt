@@ -1,6 +1,6 @@
 package io.keepcoding.mvvmarchitecture.repository.remote
 
-import io.keepcoding.mvvmarchitecture.utils.Constants
+import io.keepcoding.mvvmarchitecture.utils.Api
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -29,19 +29,19 @@ class RemoteDataManager {
         val retrofitAmadeusApi = Retrofit.Builder()
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(Constants.AMADEUS_API_BASE_URL)
+            .baseUrl(Api.AMADEUS_API_BASE_URL)
             .build()
 
         val retrofitImagesApi = Retrofit.Builder()
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(Constants.IMAGES_API_BASE_URL)
+            .baseUrl(Api.IMAGES_API_BASE_URL)
             .build()
 
         val retrofitGeoLocationApi = Retrofit.Builder()
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(Constants.GEOLOCATION_API_BASE_URL)
+            .baseUrl(Api.GEOLOCATION_API_BASE_URL)
             .build()
 
         amadeusApi = retrofitAmadeusApi.create(AmadeusApi::class.java)

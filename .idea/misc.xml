@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.228125" />
         <entry key="app/src/main/res/layout/my_trips_fragment.xml" value="0.228125" />
+        <entry key="app/src/main/res/layout/recommended_trips_recycler_view_item.xml" value="0.1171875" />
         <entry key="app/src/main/res/layout/settings_fragment.xml" value="0.228125" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.2875" />
         <entry key="app/src/main/res/menu/tab_bar_menu.xml" value="0.11145833333333334" />

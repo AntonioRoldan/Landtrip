@@ -1,4 +1,4 @@
-package io.keepcoding.mvvmarchitecture.ui
+package io.keepcoding.mvvmarchitecture.ui.homenavigationgraph
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

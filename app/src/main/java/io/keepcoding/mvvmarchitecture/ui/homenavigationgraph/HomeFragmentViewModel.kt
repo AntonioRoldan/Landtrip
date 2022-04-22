@@ -1,4 +1,4 @@
-package io.keepcoding.mvvmarchitecture.ui
+package io.keepcoding.mvvmarchitecture.ui.homenavigationgraph
 
 import android.app.Application
 import android.util.Log
@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.keepcoding.mvvmarchitecture.repository.local.LocalHelper
 import io.keepcoding.mvvmarchitecture.repository.remote.ApiHelper
+import io.keepcoding.mvvmarchitecture.utils.Api
 import io.keepcoding.mvvmarchitecture.utils.Constants
 import io.keepcoding.mvvmarchitecture.utils.Resource
 import kotlinx.coroutines.async
@@ -21,7 +22,7 @@ class HomeFragmentViewModel(private val context: Application, private val apiHel
         viewModelScope.launch {
             recommendedTrips.postValue(Resource.loading(null))
             try {
-                val tokenResponse = async { apiHelper.fetchToken(grantType = "client_credentials", clientId = Constants.AMADEUS_API_KEY, clientSecret = Constants.AMADEUS_API_SECRET)}
+                val tokenResponse = async { apiHelper.fetchToken(grantType = "client_credentials", clientId = Api.AMADEUS_API_KEY, clientSecret = Api.AMADEUS_API_SECRET)}
                 val accessToken : String? = tokenResponse.await().accessToken
                 accessToken?.let { token ->
                     Log.i("Access token", token)
@@ -30,7 +31,7 @@ class HomeFragmentViewModel(private val context: Application, private val apiHel
                         val imageUrl: String?
                         recommendedTrip?.let { tripResponseObject ->
                             tripResponseObject.name?.let { cityName ->
-                                val imageResponse = async { apiHelper.fetchPhotos(authorization = Constants.IMAGES_API_KEY, query = cityName) }
+                                val imageResponse = async { apiHelper.fetchPhotos(authorization = Api.IMAGES_API_KEY, query = cityName) }
                                 val imageObjectsArray = imageResponse.await().results
                                 imageObjectsArray?.let { imageObjects ->
                                     imageUrl = imageObjects[0]?.urls?.raw
