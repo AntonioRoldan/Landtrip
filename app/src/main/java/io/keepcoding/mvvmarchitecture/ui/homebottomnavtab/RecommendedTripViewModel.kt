@@ -1,4 +1,4 @@
-package io.keepcoding.mvvmarchitecture.ui.homenavigationgraph
+package io.keepcoding.mvvmarchitecture.ui.homebottomnavtab
 
 data class RecommendedTripViewModel(
     val name: String?,

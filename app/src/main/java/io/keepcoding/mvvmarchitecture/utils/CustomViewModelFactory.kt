@@ -8,7 +8,7 @@ import io.keepcoding.mvvmarchitecture.repository.local.LocalHelperImpl
 import io.keepcoding.mvvmarchitecture.repository.remote.ApiHelper
 import io.keepcoding.mvvmarchitecture.repository.remote.ApiHelperImpl
 import android.content.pm.PackageManager
-import io.keepcoding.mvvmarchitecture.ui.homenavigationgraph.HomeFragmentViewModel
+import io.keepcoding.mvvmarchitecture.ui.homebottomnavtab.HomeFragmentViewModel
 import java.lang.IllegalArgumentException
 
 @Suppress("UNCHECKED_CAST")

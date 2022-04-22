@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@id/navHostContainer"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/tab_bar_menu" />
+        app:menu="@menu/bottom_navigation_view_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

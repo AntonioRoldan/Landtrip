@@ -1,4 +1,4 @@
-package io.keepcoding.mvvmarchitecture.ui.homenavigationgraph
+package io.keepcoding.mvvmarchitecture.ui.homebottomnavtab
 
 import android.app.Application
 import android.util.Log

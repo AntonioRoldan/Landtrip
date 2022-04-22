@@ -6,7 +6,7 @@
     app:startDestination="@id/my_trips_dest">
     <fragment
         android:id="@+id/my_trips_dest"
-        android:name="io.keepcoding.mvvmarchitecture.ui.MyTripsFragment"
+        android:name="io.keepcoding.mvvmarchitecture.ui.mytripsbottomnavtab.MyTripsFragment"
         android:label="My trips"
         tools:layout="@layout/fragment_my_trips"
         >
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/local_activities_and_points_of_interest_dest"
-        android:name="io.keepcoding.mvvmarchitecture.ui.LocalActivitiesAndPointsOfInterestFragment"
+        android:name="io.keepcoding.mvvmarchitecture.ui.ActivitiesAndPointsOfInterestFragment"
         android:label="My activities and points of interest"
         tools:layout="@layout/fragment_local_activities_and_points_of_interest"
         >
@@ -44,14 +44,14 @@
     </fragment>
     <fragment
         android:id="@+id/local_activity_detail_dest"
-        android:name="io.keepcoding.mvvmarchitecture.ui.LocalActivityDetailFragment"
+        android:name="io.keepcoding.mvvmarchitecture.ui.ActivityDetailFragment"
         android:label="Activity title"
         tools:layout="@layout/fragment_local_activity_detail"
         >
     </fragment>
     <fragment
         android:id="@+id/local_point_of_interest_detail_dest"
-        android:name="io.keepcoding.mvvmarchitecture.ui.LocalActivityDetailFragment"
+        android:name="io.keepcoding.mvvmarchitecture.ui.PointOfInterestDetailFragment"
         android:label="Activity title"
         tools:layout="@layout/fragment_local_activity_detail"
         >

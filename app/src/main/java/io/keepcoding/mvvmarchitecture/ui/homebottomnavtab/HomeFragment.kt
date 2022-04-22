@@ -1,8 +1,7 @@
-package io.keepcoding.mvvmarchitecture.ui.homenavigationgraph
+package io.keepcoding.mvvmarchitecture.ui.homebottomnavtab
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import io.keepcoding.mvvmarchitecture.R
-import io.keepcoding.mvvmarchitecture.utils.Constants
 import io.keepcoding.mvvmarchitecture.utils.CustomViewModelFactory
 import io.keepcoding.mvvmarchitecture.utils.FragmentArguments
 import io.keepcoding.mvvmarchitecture.utils.Status
