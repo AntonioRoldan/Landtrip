@@ -7,6 +7,6 @@ import retrofit2.http.*
 interface ImagesApi {
     @GET("search/photos")
     @Headers("Content-Type: application/json")
-    suspend fun fetchPhotos(@Header("Authorization") authorization: String, //The api key
+    suspend fun fetchPhotos(@Query("client_id") authorization: String, //The api key
                             @Query("query") query: String) : ImagesResponse
 }

@@ -26,7 +26,7 @@ class HomeFragmentViewModel(private val context: Application, private val apiHel
                 val accessToken : String? = tokenResponse.await().accessToken
                 accessToken?.let { token ->
                     Log.i("Access token", token)
-                    val recommendedTripsResponse = async { apiHelper.fetchRecommendedTrips(authorization = token, cityCodes = Constants.CITY_CODE) }
+                    val recommendedTripsResponse = async { apiHelper.fetchRecommendedTrips(authorization = "Bearer $token", cityCodes = Constants.CITY_CODE) }
                     val recommendedTripsViewModels: List<RecommendedTripViewModel?>? = recommendedTripsResponse.await().data?.map { recommendedTrip ->
                         val imageUrl: String?
                         recommendedTrip?.let { tripResponseObject ->
@@ -34,10 +34,13 @@ class HomeFragmentViewModel(private val context: Application, private val apiHel
                                 val imageResponse = async { apiHelper.fetchPhotos(authorization = Api.IMAGES_API_KEY, query = cityName) }
                                 val imageObjectsArray = imageResponse.await().results
                                 imageObjectsArray?.let { imageObjects ->
-                                    imageUrl = imageObjects[0]?.urls?.raw
-                                    imageUrl?.let { image ->
+                                    imageUrl = imageObjects[0]?.urls?.raw.toString()
+                                    Log.i("Image url", imageUrl)
+                                    imageUrl.let { image ->
                                         tripResponseObject.geoCode?.latitude?.let { latitude ->
                                             tripResponseObject.geoCode.longitude?.let { longitude ->
+                                                Log.i("Recommended trips",  RecommendedTripViewModel(name = cityName, image = image, latitude = latitude, longitude = longitude).toString())
+
                                                 RecommendedTripViewModel(name = cityName, image = image, latitude = latitude, longitude = longitude)
                                             }
 

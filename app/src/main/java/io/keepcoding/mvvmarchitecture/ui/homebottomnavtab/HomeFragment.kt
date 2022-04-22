@@ -2,6 +2,8 @@ package io.keepcoding.mvvmarchitecture.ui.homebottomnavtab
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.ERROR
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -54,7 +56,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.setBackgroundColor(Color.BLUE)
+        setUpListeners()
         setUpRecyclerView()
         setUpObservers()
     }
@@ -77,8 +79,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpRecyclerView(){
+        setAdapter()
         list.layoutManager = GridLayoutManager(context, 4)
         list.addItemDecoration(DividerItemDecoration(context, GridLayoutManager.VERTICAL))
+        list.adapter = recommendedTripsAdapter
     }
 
     private fun setUpListeners() {
@@ -101,8 +105,6 @@ class HomeFragment : Fragment() {
                         loadingView.visibility = View.GONE
                         retry.visibility = View.GONE
                         list.visibility = View.VISIBLE
-                        setAdapter()
-                        list.adapter = recommendedTripsAdapter
                     }
                     Status.LOADING -> {
                         retry.visibility = View.INVISIBLE
@@ -110,6 +112,7 @@ class HomeFragment : Fragment() {
                         list.visibility = View.INVISIBLE
                     }
                     Status.ERROR -> {
+                        Log.e("Error", "Error")
                         retry.visibility = View.VISIBLE
                         loadingView.visibility = View.INVISIBLE
                         list.visibility = View.INVISIBLE

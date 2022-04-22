@@ -8,6 +8,7 @@ import io.keepcoding.mvvmarchitecture.repository.local.LocalHelperImpl
 import io.keepcoding.mvvmarchitecture.repository.remote.ApiHelper
 import io.keepcoding.mvvmarchitecture.repository.remote.ApiHelperImpl
 import android.content.pm.PackageManager
+import android.util.Log
 import io.keepcoding.mvvmarchitecture.ui.homebottomnavtab.HomeFragmentViewModel
 import java.lang.IllegalArgumentException
 
@@ -16,48 +17,6 @@ class CustomViewModelFactory(private val application: Application) : ViewModelPr
     private val apiHelper: ApiHelper = ApiHelperImpl()
     private val localHelper: LocalHelper = LocalHelperImpl(context = application.applicationContext)
 
-    init {
-        this.setConstants()
-    }
-
-    private fun setConstants() {
-        application.applicationContext.packageManager.getApplicationInfo(
-            application.applicationContext.packageName,
-            PackageManager.GET_META_DATA
-        ).metaData.getString("AMADEUS_API_KEY")?.let { key ->
-            Api.AMADEUS_API_KEY = key
-        }
-        application.applicationContext.packageManager.getApplicationInfo(
-            application.applicationContext.packageName,
-            PackageManager.GET_META_DATA
-        ).metaData.getString("AMADEUS_API_SECRET")?.let { secret ->
-            Api.AMADEUS_API_SECRET = secret
-        }
-        application.applicationContext.packageManager.getApplicationInfo(
-            application.applicationContext.packageName,
-            PackageManager.GET_META_DATA
-        ).metaData.getString("IMAGES_API_KEY")?.let { key ->
-            Api.IMAGES_API_KEY = key
-        }
-        application.applicationContext.packageManager.getApplicationInfo(
-            application.applicationContext.packageName,
-            PackageManager.GET_META_DATA
-        ).metaData.getString("IMAGES_API_SECRET")?.let { secret ->
-            Api.IMAGES_API_SECRET = secret
-        }
-        application.applicationContext.packageManager.getApplicationInfo(
-            application.applicationContext.packageName,
-            PackageManager.GET_META_DATA
-        ).metaData.getString("GEOLOCATION_API_KEY")?.let { key ->
-            Api.GEOLOCATION_API_KEY = key
-        }
-        application.applicationContext.packageManager.getApplicationInfo(
-            application.applicationContext.packageName,
-            PackageManager.GET_META_DATA
-        ).metaData.getString("GEOLOCATION_API_SECRET")?.let { secret ->
-            Api.GEOLOCATION_API_SECRET = secret
-        }
-    }
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return with(modelClass) {
             when {

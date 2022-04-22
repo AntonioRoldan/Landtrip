@@ -12,7 +12,7 @@ import io.keepcoding.mvvmarchitecture.R
 import kotlinx.android.synthetic.main.recommended_trips_recycler_view_item.view.*
 import java.lang.IllegalArgumentException
 
-class RecommendedTripsAdapter(val context: Context, val itemClickListener: ((RecommendedTripViewModel) -> Unit)? = null) : RecyclerView.Adapter<RecommendedTripsAdapter.RecommendedTripViewHolder>() {
+class RecommendedTripsAdapter(val context: Context, private val itemClickListener: ((RecommendedTripViewModel) -> Unit)? = null) : RecyclerView.Adapter<RecommendedTripsAdapter.RecommendedTripViewHolder>() {
 
     private val listener : ((View) -> Unit) = {
         if(it.tag is RecommendedTripViewModel){

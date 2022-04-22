@@ -1,18 +1,19 @@
 package io.keepcoding.mvvmarchitecture.utils
 
+import io.keepcoding.mvvmarchitecture.BuildConfig
+
 
 const val REQUEST_CODE = 100
 
 object Api {
-    var AMADEUS_API_KEY = ""
-    var AMADEUS_API_SECRET = ""
+    var AMADEUS_API_KEY = BuildConfig.AMADEUS_API_KEY
+    var AMADEUS_API_SECRET = BuildConfig.AMADEUS_API_SECRET
     var AMADEUS_TOKEN = ""
     const val AMADEUS_API_BASE_URL = "https://test.api.amadeus.com/v1/"
-    var IMAGES_API_KEY = ""
-    var IMAGES_API_SECRET = ""
+    var IMAGES_API_KEY = BuildConfig.IMAGES_API_KEY
+    var IMAGES_API_SECRET = BuildConfig.IMAGES_API_SECRET
     const val IMAGES_API_BASE_URL = "https://api.unsplash.com/"
-    var GEOLOCATION_API_KEY = ""
-    var GEOLOCATION_API_SECRET = ""
+    var GEOLOCATION_API_KEY = BuildConfig.GEOLOCATION_API_KEY
     const val GEOLOCATION_API_BASE_URL = "http://api.openweathermap.org/geo/1.0/"
 }
 
