@@ -31,7 +31,6 @@ class RecommendedTripsAdapter(val context: Context, private val itemClickListene
 
     inner class RecommendedTripViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var recommendedTripViewModel: RecommendedTripViewModel? = null
-            @SuppressLint("CheckResult")
             set(value) {
                 field = value
                 itemView.tag = recommendedTripViewModel
@@ -40,10 +39,8 @@ class RecommendedTripsAdapter(val context: Context, private val itemClickListene
                     itemView.cityName.text = it.name
                     Glide.with(context)
                         .load(it.image)
-                        .apply {
-                            RequestOptions()
-                                .placeholder(R.drawable.ic_launcher_background)
-                        }.into(itemView.cityImage)
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .into(itemView.cityImage)
                 }
             }
     }

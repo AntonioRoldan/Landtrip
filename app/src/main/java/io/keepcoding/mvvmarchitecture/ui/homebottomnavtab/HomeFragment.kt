@@ -74,15 +74,13 @@ class HomeFragment : Fragment() {
                 }
                 navController.navigate(R.id.action_home_to_activities_and_points_of_interest, bundle)
             }
-            recommendedTripsAdapter?.recommendedTripItems = recommendedTrips
         }
+        recommendedTripsAdapter?.recommendedTripItems = recommendedTrips
     }
 
     private fun setUpRecyclerView(){
-        setAdapter()
         list.layoutManager = GridLayoutManager(context, 4)
         list.addItemDecoration(DividerItemDecoration(context, GridLayoutManager.VERTICAL))
-        list.adapter = recommendedTripsAdapter
     }
 
     private fun setUpListeners() {
@@ -105,6 +103,8 @@ class HomeFragment : Fragment() {
                         loadingView.visibility = View.GONE
                         retry.visibility = View.GONE
                         list.visibility = View.VISIBLE
+                        setAdapter()
+                        list.adapter = recommendedTripsAdapter
                     }
                     Status.LOADING -> {
                         retry.visibility = View.INVISIBLE

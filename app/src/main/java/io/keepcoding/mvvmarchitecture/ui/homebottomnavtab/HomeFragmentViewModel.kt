@@ -35,17 +35,7 @@ class HomeFragmentViewModel(private val context: Application, private val apiHel
                                 val imageObjectsArray = imageResponse.await().results
                                 imageObjectsArray?.let { imageObjects ->
                                     imageUrl = imageObjects[0]?.urls?.raw.toString()
-                                    Log.i("Image url", imageUrl)
-                                    imageUrl.let { image ->
-                                        tripResponseObject.geoCode?.latitude?.let { latitude ->
-                                            tripResponseObject.geoCode.longitude?.let { longitude ->
-                                                Log.i("Recommended trips",  RecommendedTripViewModel(name = cityName, image = image, latitude = latitude, longitude = longitude).toString())
-
-                                                RecommendedTripViewModel(name = cityName, image = image, latitude = latitude, longitude = longitude)
-                                            }
-
-                                        }
-                                    }
+                                    RecommendedTripViewModel(name = cityName, image = imageUrl, latitude = null, longitude = null)
                                 }
                             }
                         }
