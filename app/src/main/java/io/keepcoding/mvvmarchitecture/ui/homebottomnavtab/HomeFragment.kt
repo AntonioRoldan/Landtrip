@@ -81,7 +81,6 @@ class HomeFragment : Fragment() {
 
     private fun setUpRecyclerView(){
         list.layoutManager = GridLayoutManager(context, 4)
-        list.addItemDecoration(DividerItemDecoration(context, LinearLayout.SHOW_DIVIDER_NONE))
     }
 
     private fun setUpListeners() {
