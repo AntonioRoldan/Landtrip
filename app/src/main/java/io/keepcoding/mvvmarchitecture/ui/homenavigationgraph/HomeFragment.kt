@@ -8,8 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import io.keepcoding.mvvmarchitecture.R
+import io.keepcoding.mvvmarchitecture.utils.Constants
 import io.keepcoding.mvvmarchitecture.utils.CustomViewModelFactory
+import io.keepcoding.mvvmarchitecture.utils.FragmentArguments
+import kotlinx.android.synthetic.main.fragment_home.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +30,8 @@ private const val ARG_PARAM2 = "param2"
 class HomeFragment : Fragment() {
 
     private val recommendedTrips: List<RecommendedTripViewModel> = mutableListOf()
+
+    private var recommendedTripsAdapter: RecommendedTripsAdapter? = null
 
     private val viewModel: HomeFragmentViewModel by lazy {
         val factory = CustomViewModelFactory(requireActivity().application)
@@ -45,6 +53,32 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.setBackgroundColor(Color.BLUE)
+    }
+
+    private fun setAdapter(){
+        context?.let {
+            recommendedTripsAdapter = RecommendedTripsAdapter(it) { recommendedTripViewModel -> // We pass the lambda function
+                val navController = findNavController()
+                val bundle: Bundle = Bundle()
+                recommendedTripViewModel.latitude?.let { latitude ->
+                    bundle.putDouble(FragmentArguments.LATITUDE, latitude)
+                }
+                recommendedTripViewModel.longitude?.let { longitude ->
+                    bundle.putDouble(FragmentArguments.LONGITUDE, longitude)
+                }
+                navController.navigate(R.id.action_home_to_activities_and_points_of_interest, bundle)
+            }
+            recommendedTripsAdapter?.recommendedTripItems = recommendedTrips
+        }
+    }
+
+    private fun setUpRecyclerView(){
+        list.layoutManager = GridLayoutManager(context, 4)
+        list.addItemDecoration(DividerItemDecoration(context, GridLayoutManager.VERTICAL))
+    }
+
+    private fun setUpObservers(){
+
     }
 
     companion object {

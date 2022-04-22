@@ -1,11 +1,15 @@
 package io.keepcoding.mvvmarchitecture.ui.homenavigationgraph
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import io.keepcoding.mvvmarchitecture.R
+import kotlinx.android.synthetic.main.recommended_trips_recycler_view_item.view.*
 import java.lang.IllegalArgumentException
 
 class RecommendedTripsAdapter(val context: Context, val itemClickListener: ((RecommendedTripViewModel) -> Unit)? = null) : RecyclerView.Adapter<RecommendedTripsAdapter.RecommendedTripViewHolder>() {
@@ -19,6 +23,7 @@ class RecommendedTripsAdapter(val context: Context, val itemClickListener: ((Rec
     }
 
     var recommendedTripItems: List<RecommendedTripViewModel?>? = null
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -26,11 +31,19 @@ class RecommendedTripsAdapter(val context: Context, val itemClickListener: ((Rec
 
     inner class RecommendedTripViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var recommendedTripViewModel: RecommendedTripViewModel? = null
+            @SuppressLint("CheckResult")
             set(value) {
                 field = value
                 itemView.tag = recommendedTripViewModel
                 field?.let {
                     //TODO: Fill item view with recommended trip view model's data here
+                    itemView.cityName.text = it.name
+                    Glide.with(context)
+                        .load(it.image)
+                        .apply {
+                            RequestOptions()
+                                .placeholder(R.drawable.ic_launcher_background)
+                        }.into(itemView.cityImage)
                 }
             }
     }

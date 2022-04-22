@@ -22,4 +22,6 @@ object Constants {
 
 object FragmentArguments {
     val FROM_SERVER = "FROM_SERVER" // Tours and points of interest fragment's argument
+    val LATITUDE = "LATITUDE" // Argument for tours activities and points of interest fragment and detail fragments for activity and point of interest
+    val LONGITUDE = "LONGITUDE"
 }
