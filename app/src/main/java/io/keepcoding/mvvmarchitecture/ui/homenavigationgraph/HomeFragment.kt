@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -15,7 +16,10 @@ import io.keepcoding.mvvmarchitecture.R
 import io.keepcoding.mvvmarchitecture.utils.Constants
 import io.keepcoding.mvvmarchitecture.utils.CustomViewModelFactory
 import io.keepcoding.mvvmarchitecture.utils.FragmentArguments
+import io.keepcoding.mvvmarchitecture.utils.Status
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.loading_view.*
+import kotlinx.android.synthetic.main.try_again_view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +33,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeFragment : Fragment() {
 
-    private val recommendedTrips: List<RecommendedTripViewModel> = mutableListOf()
+    private var recommendedTrips: List<RecommendedTripViewModel?> = mutableListOf()
 
     private var recommendedTripsAdapter: RecommendedTripsAdapter? = null
 
@@ -53,6 +57,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.setBackgroundColor(Color.BLUE)
+        setUpRecyclerView()
+        setUpObservers()
     }
 
     private fun setAdapter(){
@@ -77,8 +83,42 @@ class HomeFragment : Fragment() {
         list.addItemDecoration(DividerItemDecoration(context, GridLayoutManager.VERTICAL))
     }
 
-    private fun setUpObservers(){
+    private fun setUpListeners() {
+        buttonRetry.setOnClickListener {
+            fetchData()
+        }
+    }
 
+    private fun fetchData(){
+        viewModel.fetchRecommendedTrips()
+    }
+
+    private fun setUpObservers(){
+        fetchData()
+        viewModel.getRecommendedTrips().observe(viewLifecycleOwner, Observer { recommendedTripsViewModels ->
+            recommendedTripsViewModels.data?.let {
+                when(recommendedTripsViewModels.status){
+                    Status.SUCCESS -> {
+                        recommendedTrips = it
+                        loadingView.visibility = View.GONE
+                        retry.visibility = View.GONE
+                        list.visibility = View.VISIBLE
+                        setAdapter()
+                        list.adapter = recommendedTripsAdapter
+                    }
+                    Status.LOADING -> {
+                        retry.visibility = View.INVISIBLE
+                        loadingView.visibility = View.VISIBLE
+                        list.visibility = View.INVISIBLE
+                    }
+                    Status.ERROR -> {
+                        retry.visibility = View.VISIBLE
+                        loadingView.visibility = View.INVISIBLE
+                        list.visibility = View.INVISIBLE
+                    }
+                }
+            }
+        })
     }
 
     companion object {
