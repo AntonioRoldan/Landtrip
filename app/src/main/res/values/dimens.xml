@@ -1,4 +1,4 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="recommended_trip_card_text_size">20dp</dimen>
+    <dimen name="recommended_trip_card_text_size">15dp</dimen>
 </resources>
