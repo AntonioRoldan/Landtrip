@@ -47,7 +47,9 @@ class RecommendedTripsAdapter(val context: Context, val itemClickListener: ((Rec
         holder: RecommendedTripsAdapter.RecommendedTripViewHolder,
         position: Int
     ) {
-
+        val recommendedTrip = recommendedTripItems?.get(position)
+        holder.recommendedTripViewModel = recommendedTrip
+        holder.itemView.setOnClickListener(listener)
     }
 
     override fun getItemCount(): Int {
