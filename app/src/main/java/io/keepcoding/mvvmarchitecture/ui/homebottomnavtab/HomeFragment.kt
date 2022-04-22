@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -80,7 +81,7 @@ class HomeFragment : Fragment() {
 
     private fun setUpRecyclerView(){
         list.layoutManager = GridLayoutManager(context, 4)
-        list.addItemDecoration(DividerItemDecoration(context, GridLayoutManager.VERTICAL))
+        list.addItemDecoration(DividerItemDecoration(context, LinearLayout.SHOW_DIVIDER_NONE))
     }
 
     private fun setUpListeners() {
