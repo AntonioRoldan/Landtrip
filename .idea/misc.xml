@@ -9,15 +9,24 @@
         <entry key="app/src/main/res/drawable/ic_my_trips.xml" value="0.1535" />
         <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.1535" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20606884057971014" />
+        <entry key="app/src/main/res/layout/fragment_activities_and_points_of_interest.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_activity_detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_cities.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/fragment_local_activities_and_points_of_interest.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_local_activity_detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_local_point_of_interest_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_my_trips.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/layout/fragment_point_of_interest_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.20606884057971014" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.228125" />
+        <entry key="app/src/main/res/layout/loading_view.xml" value="0.6535714285714286" />
         <entry key="app/src/main/res/layout/my_trips_fragment.xml" value="0.228125" />
         <entry key="app/src/main/res/layout/recommended_trips_recycler_view_item.xml" value="0.1171875" />
         <entry key="app/src/main/res/layout/settings_fragment.xml" value="0.228125" />
+        <entry key="app/src/main/res/layout/try_again_view.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.2875" />
         <entry key="app/src/main/res/menu/tab_bar_menu.xml" value="0.11145833333333334" />
         <entry key="app/src/main/res/menu/tabbarmenu.xml" value="0.228125" />

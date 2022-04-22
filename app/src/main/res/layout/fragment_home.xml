@@ -4,12 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".ui.HomeFragment">
+    tools:context=".ui.homenavigationgraph.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <include
+        android:id="@+id/loadingView"
+        layout="@layout/loading_view" />
+
+    <include
+        android:id="@+id/retry"
+        layout="@layout/try_again_view"
+        android:visibility="invisible"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/home_fragment" />
+        android:visibility="invisible"
+        />
+    <!-- TODO: Update blank fragment layout -->
 
 </FrameLayout>
