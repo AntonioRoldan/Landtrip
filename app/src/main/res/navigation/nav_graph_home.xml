@@ -17,14 +17,6 @@
             app:popEnterAnim="@anim/nav_default_exit_anim"
             app:popExitAnim="@anim/nav_default_enter_anim"
             />
-        <action
-            android:id="@+id/action_home_to_cities"
-            app:destination="@+id/cities_dest"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_exit_anim"
-            app:popExitAnim="@anim/nav_default_enter_anim"
-            />
     </fragment>
     <fragment
         android:id="@+id/activities_and_points_of_interest_dest"
@@ -43,21 +35,6 @@
         <action
             android:id="@+id/action_activities_and_points_of_interest_to_point_of_interest_detail"
             app:destination="@+id/point_of_interest_detail_dest"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_exit_anim"
-            app:popExitAnim="@anim/nav_default_enter_anim"
-            />
-    </fragment>
-    <fragment
-        android:id="@+id/cities_dest"
-        android:name="io.keepcoding.mvvmarchitecture.ui.homebottomnavtab.CitiesFragment"
-        android:label="Cities"
-        tools:layout="@layout/fragment_cities"
-        >
-        <action
-            android:id="@+id/cities_to_action_activities_and_points_of_interest"
-            app:destination="@+id/activities_and_points_of_interest_dest"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_exit_anim"

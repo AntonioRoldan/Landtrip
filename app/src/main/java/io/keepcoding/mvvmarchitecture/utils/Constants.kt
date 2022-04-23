@@ -19,8 +19,8 @@ object Api {
 
 object Constants {
     var CITY_CODE = "MAD"
-    const val ACTIVITY_VIEW_TYPE = "ACTIVITY_VIEW_TYPE"
-    const val POINT_OF_INTEREST_VIEW_TYPE = "POINT_OF_INTEREST_VIEW_TYPE"
+    const val ACTIVITY_VIEW_TYPE = 0
+    const val POINT_OF_INTEREST_VIEW_TYPE = 1
 }
 
 object FragmentArguments {
