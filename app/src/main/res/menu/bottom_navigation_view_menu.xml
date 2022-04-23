@@ -11,9 +11,9 @@
         android:menuCategory="secondary"
         android:icon="@drawable/ic_my_trips" />
     <item
-        android:id="@+id/nav_graph_settings"
-        android:title="@string/settings_bottom_nav_view_title"
+        android:id="@+id/nav_graph_add_trip"
+        android:title="@string/add_trip_bottom_nav_view_title"
         android:menuCategory="secondary"
-        android:icon="@drawable/ic_settings" />
+        android:icon="@drawable/ic_add_trip" />
 
 </menu>

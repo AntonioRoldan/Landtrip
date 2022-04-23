@@ -27,10 +27,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         setUpNavigation()
-        setUpClickListeners()
     }
 
     override fun onSupportNavigateUp(): Boolean {
+
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostContainer) as NavHostFragment // We suppress cast never succeeds so the compiler does not complain
         navController = navHostFragment.navController
         bottomNavigation.setupWithNavController(navController)
-        //bottomNavigation.setOnItemSelectedListener { item ->
+        //bottomNavigation.setOnItemSelectedListener { item -> leave this for learning
         //            val fragment: Fragment
         //            when (item.itemId) {
         //                R.id.nav_graph_home -> {
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         //                else -> false
         //            }
         //        }
-        appBarConfiguration = AppBarConfiguration.Builder(R.id.home_dest, R.id.my_trips_dest, R.id.settings_dest)
+        appBarConfiguration = AppBarConfiguration.Builder(R.id.home_dest, R.id.my_trips_dest, R.id.add_new_trip_dest)
             .build()
         setupActionBarWithNavController(navController)
     }
@@ -87,11 +87,6 @@ class MainActivity : AppCompatActivity() {
     //            .commit()
     //    }
 
-    private fun setUpClickListeners() {
-        addNewTripFloatingActionButton.setOnClickListener {
-            //TODO: Leave this as a comment: We move to the dialog fragment responsible for storing the new trip, using navigation component
-        }
-    }
 
     private fun receiveDataFromFragment() { // We are going to receive the
 

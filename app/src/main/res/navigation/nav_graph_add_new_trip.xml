@@ -2,13 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph_settings"
-    app:startDestination="@id/settings_dest">
+    android:id="@+id/nav_graph_add_trip"
+    app:startDestination="@id/add_new_trip_dest">
 <fragment
-    android:id="@+id/settings_dest"
+    android:id="@+id/add_new_trip_dest"
     android:name="io.keepcoding.mvvmarchitecture.ui.SettingsFragment"
     android:label="Settings"
-    tool:layout="@layout/fragment_settings"
+    tool:layout="@layout/fragment_add_trip"
     >
 </fragment>
 </navigation>
