@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import io.keepcoding.mvvmarchitecture.R
 import io.keepcoding.mvvmarchitecture.utils.CustomViewModelFactory
 import io.keepcoding.mvvmarchitecture.utils.FragmentArguments
+import io.keepcoding.mvvmarchitecture.utils.SpacesItemDecoration
 import io.keepcoding.mvvmarchitecture.utils.Status
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.loading_view.*
@@ -62,6 +63,11 @@ class HomeFragment : Fragment() {
         setUpObservers()
     }
 
+    override fun onResume() {
+        super.onResume()
+        fetchData() //Case the code for the country of origin that must be passed in the API call changes
+    }
+
     private fun setAdapter(){
         context?.let {
             recommendedTripsAdapter = RecommendedTripsAdapter(it) { recommendedTripViewModel -> // We pass the lambda function
@@ -81,6 +87,7 @@ class HomeFragment : Fragment() {
 
     private fun setUpRecyclerView(){
         list.layoutManager = GridLayoutManager(context, 4)
+        list.addItemDecoration(SpacesItemDecoration(10))
     }
 
     private fun setUpListeners() {

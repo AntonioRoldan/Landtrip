@@ -1,4 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="recommended_trip_card_text_size">15dp</dimen>
+    <dimen name="floating_action_button_start_margin">315dp</dimen>
+    <dimen name="floating_action_button_bottom_margin">125dp</dimen>
+    <dimen name="floating_action_button_margin_top">550dp</dimen>
 </resources>

@@ -36,6 +36,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBar"
         app:navGraph="@navigation/nav_graph" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addNewTripFloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        android:layout_marginStart="@dimen/floating_action_button_start_margin"
+        android:layout_marginLeft="@dimen/floating_action_button_start_margin"
+        android:layout_marginBottom="@dimen/floating_action_button_bottom_margin"
+        android:layout_marginTop="@dimen/floating_action_button_margin_top"
+        app:srcCompat="@drawable/ic_add_trip"
+        />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
@@ -44,8 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/navHostContainer"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
+        app:tint="@color/white"
         app:menu="@menu/bottom_navigation_view_menu" />
 
 

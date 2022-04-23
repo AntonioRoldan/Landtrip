@@ -17,4 +17,7 @@
     <string name="loading">loading</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="retry">Retry</string>
+    <string name="home_bottom_nav_view_title">Home</string>
+    <string name="my_trips_bottom_nav_view_title">My trips</string>
+    <string name="settings_bottom_nav_view_title">Settings</string>
 </resources>
