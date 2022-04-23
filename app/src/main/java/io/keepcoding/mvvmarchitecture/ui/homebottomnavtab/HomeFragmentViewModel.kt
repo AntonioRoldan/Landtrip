@@ -21,7 +21,7 @@ class HomeFragmentViewModel(private val context: Application, private val apiHel
     fun fetchRecommendedTrips(){
         viewModelScope.launch {
             recommendedTrips.postValue(Resource.loading(null))
-            try {
+            try { // We could have assigned the nullable values to the class, then do the unwrapping in the recycler view adapter
                 val tokenResponse = async { apiHelper.fetchToken(grantType = "client_credentials", clientId = Api.AMADEUS_API_KEY, clientSecret = Api.AMADEUS_API_SECRET)}
                 val accessToken : String? = tokenResponse.await().accessToken
                 accessToken?.let { token ->
