@@ -76,6 +76,7 @@ class HomeFragment : Fragment() {
                 recommendedTripViewModel.name?.let { cityName ->
                     bundle.putString(FragmentArguments.CITY_NAME, cityName)
                 }
+                bundle.putBoolean(FragmentArguments.FROM_HOME, true)
                 bundle.putBoolean(FragmentArguments.FROM_SERVER, true)
                 navController.navigate(R.id.action_home_to_activities_and_points_of_interest, bundle)
             }

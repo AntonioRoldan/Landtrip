@@ -23,6 +23,7 @@ object Constants {
 
 object FragmentArguments {
     const val FROM_SERVER = "FROM_SERVER" // Tours and points of interest fragment's argument
+    const val FROM_HOME = "FROM_HOME" // Since the recommended trips api call returns null for longitude, we have to pass the city name and get coordinates with another api from the home fragment
     const val LATITUDE = "LATITUDE" // Argument for tours activities and points of interest fragment and detail fragments for activity and point of interest
     const val LONGITUDE = "LONGITUDE"
     const val CITY_NAME = "CITY_NAME"
