@@ -1,11 +1,13 @@
 package io.keepcoding.mvvmarchitecture.ui
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -25,17 +27,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         setUpNavigation()
+        setUpClickListeners()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    //private fun loadFragment(fragment: Fragment){
-    //        supportFragmentManager.beginTransaction()
-    //            .replace(R.id.navHostContainer, fragment)
-    //            .commit()
-    //    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -82,9 +81,19 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
     }
 
+    //private fun loadFragment(fragment: Fragment){
+    //        supportFragmentManager.beginTransaction()
+    //            .replace(R.id.navHostContainer, fragment)
+    //            .commit()
+    //    }
+
     private fun setUpClickListeners() {
         addNewTripFloatingActionButton.setOnClickListener {
-
+            //TODO: Leave this as a comment: We move to the dialog fragment responsible for storing the new trip, using navigation component
         }
+    }
+
+    private fun receiveDataFromFragment() { // We are going to receive the
+
     }
 }

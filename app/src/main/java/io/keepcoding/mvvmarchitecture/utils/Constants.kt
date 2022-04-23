@@ -6,14 +6,14 @@ import io.keepcoding.mvvmarchitecture.BuildConfig
 const val REQUEST_CODE = 100
 
 object Api {
-    var AMADEUS_API_KEY = BuildConfig.AMADEUS_API_KEY
-    var AMADEUS_API_SECRET = BuildConfig.AMADEUS_API_SECRET
-    var AMADEUS_TOKEN = ""
+    const val AMADEUS_API_KEY = BuildConfig.AMADEUS_API_KEY
+    const val AMADEUS_API_SECRET = BuildConfig.AMADEUS_API_SECRET
+    const val AMADEUS_TOKEN = ""
     const val AMADEUS_API_BASE_URL = "https://test.api.amadeus.com/v1/"
-    var IMAGES_API_KEY = BuildConfig.IMAGES_API_KEY
-    var IMAGES_API_SECRET = BuildConfig.IMAGES_API_SECRET
+    const val IMAGES_API_KEY = BuildConfig.IMAGES_API_KEY
+    const val IMAGES_API_SECRET = BuildConfig.IMAGES_API_SECRET
     const val IMAGES_API_BASE_URL = "https://api.unsplash.com/"
-    var GEOLOCATION_API_KEY = BuildConfig.GEOLOCATION_API_KEY
+    const val GEOLOCATION_API_KEY = BuildConfig.GEOLOCATION_API_KEY
     const val GEOLOCATION_API_BASE_URL = "http://api.openweathermap.org/geo/1.0/"
 }
 
@@ -22,7 +22,8 @@ object Constants {
 }
 
 object FragmentArguments {
-    val FROM_SERVER = "FROM_SERVER" // Tours and points of interest fragment's argument
-    val LATITUDE = "LATITUDE" // Argument for tours activities and points of interest fragment and detail fragments for activity and point of interest
-    val LONGITUDE = "LONGITUDE"
+    const val FROM_SERVER = "FROM_SERVER" // Tours and points of interest fragment's argument
+    const val LATITUDE = "LATITUDE" // Argument for tours activities and points of interest fragment and detail fragments for activity and point of interest
+    const val LONGITUDE = "LONGITUDE"
+    const val CITY_NAME = "CITY_NAME"
 }

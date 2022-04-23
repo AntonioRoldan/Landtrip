@@ -21,3 +21,4 @@ class SpacesItemDecoration(private val space: Int) : RecyclerView.ItemDecoration
         }
     }
 }
+
