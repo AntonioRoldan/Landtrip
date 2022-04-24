@@ -68,12 +68,12 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityIte
         viewType: Int
     ): RecyclerView.ViewHolder {
         val view: View
-        if(viewType == Constants.ACTIVITY_VIEW_TYPE){
+        return if(viewType == Constants.ACTIVITY_VIEW_TYPE){
             view = LayoutInflater.from(context).inflate(R.layout.activity_recycler_view_item, parent, false)
-            return ActivityViewHolder(view)
+            ActivityViewHolder(view)
         } else {
             view = LayoutInflater.from(context).inflate(R.layout.point_of_interest_recycler_view_item, parent, false)
-            return PointOfInterestViewHolder(view)
+            PointOfInterestViewHolder(view)
         }
     }
 
