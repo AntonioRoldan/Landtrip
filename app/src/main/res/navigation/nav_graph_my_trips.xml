@@ -23,7 +23,7 @@
         android:id="@+id/local_activities_and_points_of_interest_dest"
         android:name="io.keepcoding.mvvmarchitecture.ui.ActivitiesAndPointsOfInterestFragment"
         android:label="My activities and points of interest"
-        tools:layout="@layout/fragment_local_activities_and_points_of_interest"
+        tools:layout="@layout/fragment_activities_and_points_of_interest"
         >
         <action
             android:id="@+id/local_activities_and_points_of_interest_to_local_activity_detail"
@@ -46,14 +46,14 @@
         android:id="@+id/local_activity_detail_dest"
         android:name="io.keepcoding.mvvmarchitecture.ui.ActivityDetailFragment"
         android:label="Activity title"
-        tools:layout="@layout/fragment_local_activity_detail"
+        tools:layout="@layout/fragment_activity_detail"
         >
     </fragment>
     <fragment
         android:id="@+id/local_point_of_interest_detail_dest"
         android:name="io.keepcoding.mvvmarchitecture.ui.PointOfInterestDetailFragment"
         android:label="Activity title"
-        tools:layout="@layout/fragment_local_activity_detail"
+        tools:layout="@layout/fragment_point_of_interest_detail"
         >
 
     </fragment>

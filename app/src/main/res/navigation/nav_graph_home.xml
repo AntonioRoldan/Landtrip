@@ -52,7 +52,7 @@
         android:id="@+id/point_of_interest_detail_dest"
         android:name="io.keepcoding.mvvmarchitecture.ui.PointOfInterestDetailFragment"
         android:label="Point of interest"
-        tools:layout="@layout/fragment_local_point_of_interest_detail"
+        tools:layout="@layout/fragment_point_of_interest_detail"
         >
 
     </fragment>
