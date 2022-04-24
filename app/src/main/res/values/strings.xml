@@ -26,4 +26,9 @@
     <string name="currency_code">CURRENCY CODE</string>
     <string name="rating">Rating:</string>
     <string name="price">Price:</string>
+    <string name="point_of_interest_name">Point of interest name</string>
+    <string name="rank">Rank:</string>
+    <string name="rank_value">Rank Value</string>
+    <string name="category">Category:</string>
+    <string name="category_name">Category name</string>
 </resources>
