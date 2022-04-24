@@ -5,16 +5,34 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import io.keepcoding.mvvmarchitecture.ui.homebottomnavtab.RecommendedTripViewModel
 import io.keepcoding.mvvmarchitecture.utils.Constants
+import java.lang.IllegalArgumentException
 
-class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityItemClickListener:  ((activityViewModel: ActivityViewModel) -> Unit), val pointOfInterestItemClickListener : ((pointOfInterestViewModel: PointOfInterestViewModel) -> Unit)) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityItemClickListener:  ((activityViewModel: ActivityViewModel) -> Unit)? = null, val pointOfInterestItemClickListener : ((pointOfInterestViewModel: PointOfInterestViewModel) -> Unit)? = null) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val activityViewTypelistener : ((View) -> Unit) = {
+        if(it.tag is ActivityViewModel){
+            activityItemClickListener?.invoke(it.tag as ActivityViewModel)
+        } else {
+            throw IllegalArgumentException("View tag has not been set to item view model")
+        }
+    }
+
+    private val pointOfInterestViewTypeListener : ((View) -> Unit) = {
+        if(it.tag is PointOfInterestViewModel) {
+            pointOfInterestItemClickListener?.invoke(it.tag as PointOfInterestViewModel)
+        } else {
+            throw IllegalArgumentException("View tag has not been set to item view model")
+        }
+    }
 
     var activitiesAndPointsOfInterestItems: List<ActivitiesAndPointOfInterestItemInterface?>? = null
-    @SuppressLint("NotifyDataSetChanged")
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     inner class ActivityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var activityViewModel: ActivityViewModel? = null
@@ -22,7 +40,7 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityIte
                 field = value
                 itemView.tag = activityViewModel
                 field?.let {
-                    itemView //TODO: Write this
+                    itemView
                 }
             }
     }
@@ -33,7 +51,7 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityIte
                 field = value
                 itemView.tag = pointOfInterestViewModel
                 field?.let {
-                    itemView //TODO: Write this
+                    itemView
                 }
             }
     }
@@ -59,12 +77,13 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityIte
             if(it.viewType == Constants.ACTIVITY_VIEW_TYPE) {
                 val activity: ActivityViewModel = it as ActivityViewModel
                 val activityViewHolder = (holder as ActivityViewHolder)
-                holder.activityViewModel = activity
-                //TODO: Set click listener
+                activityViewHolder.activityViewModel = activity
+                activityViewHolder.itemView.setOnClickListener(activityViewTypelistener)
             } else {
                 val pointOfInterest: PointOfInterestViewModel = it as PointOfInterestViewModel
                 val pointOfInterestViewHolder = (holder as PointOfInterestViewHolder)
                 pointOfInterestViewHolder.pointOfInterestViewModel = pointOfInterest
+                pointOfInterestViewHolder.itemView.setOnClickListener(pointOfInterestViewTypeListener)
             }
         }
     }
