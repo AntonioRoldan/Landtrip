@@ -38,5 +38,9 @@ interface AmadeusApi {
                                       @Query("latitude") latitude: Number,
                                       @Query("longitude") longitude: Number) : PointsOfInterestResponse//TODO: Check if the example from api reference was right
 
+    @GET("reference-data/locations/pois")
+    @Headers("Content-Type: application/json")
+    suspend fun fetchPointOfInterestById(@Header("Authorization") authorization: String,
+                                        @Path("poisId") pointOfInterestId: String) : PointOfInterestByIdResponse
 }
 

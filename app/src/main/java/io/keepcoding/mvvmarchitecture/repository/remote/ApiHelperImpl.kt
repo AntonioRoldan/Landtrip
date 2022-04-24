@@ -64,6 +64,17 @@ class ApiHelperImpl() : ApiHelper {
         }
         return response    }
 
+    override suspend fun fetchPointOfInterestById(
+        authorization: String,
+        pointOfInterestId: String
+    ): PointOfInterestByIdResponse {
+        var response: PointOfInterestByIdResponse
+        withContext(Dispatchers.IO) {
+            response = amadeusService.fetchPointOfInterestById(authorization, pointOfInterestId)
+        }
+        return response
+    }
+
     override suspend fun fetchPhotos(authorization: String, query: String): ImagesResponse {
         var response: ImagesResponse
         withContext(Dispatchers.IO) {
