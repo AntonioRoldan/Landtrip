@@ -11,7 +11,7 @@ import java.lang.IllegalArgumentException
 
 class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityItemClickListener:  ((activityViewModel: ActivityViewModel) -> Unit)? = null, val pointOfInterestItemClickListener : ((pointOfInterestViewModel: PointOfInterestViewModel) -> Unit)? = null) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val activityViewTypelistener : ((View) -> Unit) = {
+    private val activityViewTypeListener : ((View) -> Unit) = {
         if(it.tag is ActivityViewModel){
             activityItemClickListener?.invoke(it.tag as ActivityViewModel)
         } else {
@@ -78,7 +78,7 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityIte
                 val activity: ActivityViewModel = it as ActivityViewModel
                 val activityViewHolder = (holder as ActivityViewHolder)
                 activityViewHolder.activityViewModel = activity
-                activityViewHolder.itemView.setOnClickListener(activityViewTypelistener)
+                activityViewHolder.itemView.setOnClickListener(activityViewTypeListener)
             } else {
                 val pointOfInterest: PointOfInterestViewModel = it as PointOfInterestViewModel
                 val pointOfInterestViewHolder = (holder as PointOfInterestViewHolder)
