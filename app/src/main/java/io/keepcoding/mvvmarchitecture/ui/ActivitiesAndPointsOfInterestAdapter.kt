@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_recycler_view_item.view.*
 import kotlinx.android.synthetic.main.point_of_interest_recycler_view_item.view.*
 import java.lang.IllegalArgumentException
 
-class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityItemClickListener:  ((activityViewModel: ActivityViewModel) -> Unit)? = null, val pointOfInterestItemClickListener : ((pointOfInterestViewModel: PointOfInterestViewModel) -> Unit)? = null) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ActivitiesAndPointsOfInterestAdapter(val context: Context, private val activityItemClickListener:  ((activityViewModel: ActivityViewModel) -> Unit)? = null, private val pointOfInterestItemClickListener : ((pointOfInterestViewModel: PointOfInterestViewModel) -> Unit)? = null) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val activityViewTypeListener : ((View) -> Unit) = {
         if(it.tag is ActivityViewModel){
