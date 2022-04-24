@@ -20,4 +20,10 @@
     <string name="home_bottom_nav_view_title">Home</string>
     <string name="my_trips_bottom_nav_view_title">My trips</string>
     <string name="add_trip_bottom_nav_view_title">Add Trip</string>
+    <string name="activity_name">Activity name</string>
+    <string name="activity_rating">Activity rating</string>
+    <string name="activity_price">Activity price</string>
+    <string name="currency_code">CURRENCY CODE</string>
+    <string name="rating">Rating:</string>
+    <string name="price">Price:</string>
 </resources>

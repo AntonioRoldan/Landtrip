@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="City name"
-                android:textSize="@dimen/recommended_trip_card_text_size"
+                android:textSize="@dimen/card_title_text_size"
                 android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

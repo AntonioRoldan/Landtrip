@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import io.keepcoding.mvvmarchitecture.R
-import kotlinx.android.synthetic.main.recommended_trips_recycler_view_item.view.*
+import kotlinx.android.synthetic.main.recommended_trip_recycler_view_item.view.*
 import java.lang.IllegalArgumentException
 
 class RecommendedTripsAdapter(val context: Context, private val itemClickListener: ((RecommendedTripViewModel) -> Unit)? = null) : RecyclerView.Adapter<RecommendedTripsAdapter.RecommendedTripViewHolder>() {
@@ -49,7 +48,7 @@ class RecommendedTripsAdapter(val context: Context, private val itemClickListene
         parent: ViewGroup,
         viewType: Int
     ): RecommendedTripsAdapter.RecommendedTripViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.recommended_trips_recycler_view_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.recommended_trip_recycler_view_item, parent, false)
         return RecommendedTripViewHolder(view)
     }
 
