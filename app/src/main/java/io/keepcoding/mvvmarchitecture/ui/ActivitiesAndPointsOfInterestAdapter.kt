@@ -2,11 +2,15 @@ package io.keepcoding.mvvmarchitecture.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import io.keepcoding.mvvmarchitecture.R
 import io.keepcoding.mvvmarchitecture.ui.homebottomnavtab.RecommendedTripViewModel
 import io.keepcoding.mvvmarchitecture.utils.Constants
+import kotlinx.android.synthetic.main.activity_recycler_view_item.view.*
+import kotlinx.android.synthetic.main.point_of_interest_recycler_view_item.view.*
 import java.lang.IllegalArgumentException
 
 class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityItemClickListener:  ((activityViewModel: ActivityViewModel) -> Unit)? = null, val pointOfInterestItemClickListener : ((pointOfInterestViewModel: PointOfInterestViewModel) -> Unit)? = null) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -40,7 +44,9 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityIte
                 field = value
                 itemView.tag = activityViewModel
                 field?.let {
-                    itemView
+                    itemView.ratingValue.text = it.rating
+                    itemView.priceValue.text = it.price
+                    itemView.currencyCode.text = it.currencyCode
                 }
             }
     }
@@ -51,7 +57,8 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityIte
                 field = value
                 itemView.tag = pointOfInterestViewModel
                 field?.let {
-                    itemView
+                    itemView.rankValue.text = it.rank.toString()
+                    itemView.categoryName.text = it.category
                 }
             }
     }
@@ -60,7 +67,14 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, val activityIte
         parent: ViewGroup,
         viewType: Int
     ): RecyclerView.ViewHolder {
-        TODO("Not yet implemented")
+        val view: View
+        if(viewType == Constants.ACTIVITY_VIEW_TYPE){
+            view = LayoutInflater.from(context).inflate(R.layout.activity_recycler_view_item, parent, false)
+            return ActivityViewHolder(view)
+        } else {
+            view = LayoutInflater.from(context).inflate(R.layout.point_of_interest_recycler_view_item, parent, false)
+            return PointOfInterestViewHolder(view)
+        }
     }
 
 
