@@ -47,6 +47,14 @@
         android:label="Activity"
         tools:layout="@layout/fragment_activity_detail"
         >
+        <action
+            android:id="@+id/action_activity_detail_to_my_trips"
+            app:destination="@+id/add_to_my_trips_dest"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_enter_anim"
+            />
     </fragment>
     <fragment
         android:id="@+id/point_of_interest_detail_dest"
@@ -54,6 +62,20 @@
         android:label="Point of interest"
         tools:layout="@layout/fragment_point_of_interest_detail"
         >
-
+        <action
+            android:id="@+id/action_point_of_interest_detail_to_my_trips"
+            app:destination="@+id/add_to_my_trips_dest"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_enter_anim"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/add_to_my_trips_dest"
+        android:name="io.keepcoding.mvvmarchitecture.ui.mytripsbottomnavtab.MyTripsFragment"
+        android:label="Add to trip"
+        tools:layout="@layout/fragment_my_trips"
+        >
     </fragment>
 </navigation>

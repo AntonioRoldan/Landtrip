@@ -14,7 +14,7 @@
         <entry key="app/src/main/res/layout/cities_recycler_view_item.xml" value="0.1398176291793313" />
         <entry key="app/src/main/res/layout/fragment_activities_and_points_of_interest.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_activity_detail.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_add_trip.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_add_trip.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_cities.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.196875" />
@@ -32,6 +32,7 @@
         <entry key="app/src/main/res/layout/recommended_trip_recycler_view_item.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/recommended_trips_recycler_view_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/settings_fragment.xml" value="0.228125" />
+        <entry key="app/src/main/res/layout/trip_recycler_view_item.xml" value="0.2875" />
         <entry key="app/src/main/res/layout/try_again_view.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_navigation_view_menu.xml" value="0.4041666666666667" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.2875" />

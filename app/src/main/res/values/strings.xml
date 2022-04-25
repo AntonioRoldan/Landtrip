@@ -32,4 +32,6 @@
     <string name="category">Category:</string>
     <string name="category_name">Category name</string>
     <string name="visited">Visited</string>
+    <string name="trip_name">Trip name</string>
+    <string name="add_trip_edit_text">Type in your trip name</string>
 </resources>
