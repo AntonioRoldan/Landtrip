@@ -1,18 +1,14 @@
 package io.keepcoding.mvvmarchitecture.ui.homebottomnavtab
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.ERROR
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import io.keepcoding.mvvmarchitecture.R
 import io.keepcoding.mvvmarchitecture.utils.CustomViewModelFactory
@@ -85,8 +81,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpRecyclerView(){
-        list.layoutManager = GridLayoutManager(context, 4)
-        list.addItemDecoration(SpacesItemDecoration(10))
+        recommendedTripsList.layoutManager = GridLayoutManager(context, 4)
+        recommendedTripsList.addItemDecoration(SpacesItemDecoration(10))
     }
 
     private fun setUpListeners() {
@@ -108,20 +104,20 @@ class HomeFragment : Fragment() {
                         recommendedTrips = it
                         loadingView.visibility = View.GONE
                         retry.visibility = View.GONE
-                        list.visibility = View.VISIBLE
+                        recommendedTripsList.visibility = View.VISIBLE
                         setAdapter()
-                        list.adapter = recommendedTripsAdapter
+                        recommendedTripsList.adapter = recommendedTripsAdapter
                     }
                     Status.LOADING -> {
                         retry.visibility = View.INVISIBLE
                         loadingView.visibility = View.VISIBLE
-                        list.visibility = View.INVISIBLE
+                        recommendedTripsList.visibility = View.INVISIBLE
                     }
                     Status.ERROR -> {
                         Log.e("Error", "Error")
                         retry.visibility = View.VISIBLE
                         loadingView.visibility = View.INVISIBLE
-                        list.visibility = View.INVISIBLE
+                        recommendedTripsList.visibility = View.INVISIBLE
                     }
                 }
             }
