@@ -22,7 +22,7 @@
         <entry key="app/src/main/res/layout/fragment_local_activity_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_local_point_of_interest_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_my_trips.xml" value="0.23854166666666668" />
-        <entry key="app/src/main/res/layout/fragment_point_of_interest_detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_point_of_interest_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.20606884057971014" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.228125" />

@@ -29,4 +29,6 @@ object FragmentArguments {
     const val LATITUDE = "LATITUDE" // Argument for tours activities and points of interest fragment and detail fragments for activity and point of interest
     const val LONGITUDE = "LONGITUDE"
     const val CITY_NAME = "CITY_NAME"
+    const val POINT_OF_INTEREST_PARCELABLE = "POINT_OF_INTEREST_PARCELABLE"
+    const val ACTIVITY_PARCELABLE = "ACTIVITY_PARCELABLE"
 }
