@@ -61,7 +61,6 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        fetchData() //Case the code for the country of origin that must be passed in the API call changes
     }
 
     private fun setAdapter(){

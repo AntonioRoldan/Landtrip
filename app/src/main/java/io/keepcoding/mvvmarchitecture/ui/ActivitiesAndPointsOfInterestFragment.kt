@@ -70,6 +70,8 @@ class ActivitiesAndPointsOfInterestFragment : Fragment() {
         }
     }
 
+
+
     private fun setAdapter(){
         context?.let {
             activitiesAndPointsOfInterestAdapter = ActivitiesAndPointsOfInterestAdapter(it, { activityViewModel ->
@@ -112,6 +114,7 @@ class ActivitiesAndPointsOfInterestFragment : Fragment() {
             activitiesAndPointsOfInterestViewModels.data?.let {
                 when(activitiesAndPointsOfInterestViewModels.status) {
                     Status.SUCCESS -> {
+                        Log.v("DATA", it.toString())
                         activitiesAndPointsOfInterest = it
                         activitiesAndPointsOfInterestLoadingView.visibility = View.GONE
                         activitiesAndPointsOfInterestRetry.visibility = View.GONE

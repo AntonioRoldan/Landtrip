@@ -79,7 +79,7 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                                         )
                                     }
                                 val activitiesAndPointsOfInterestViewModels: MutableList<ActivitiesAndPointOfInterestItemInterface?> =
-                                    mutableListOf(null)
+                                    mutableListOf()
                                 activitiesViewModels?.forEach {
                                     activitiesAndPointsOfInterestViewModels.add(it)
                                 }

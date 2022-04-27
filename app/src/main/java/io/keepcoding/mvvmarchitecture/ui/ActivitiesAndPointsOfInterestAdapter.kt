@@ -44,6 +44,7 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, private val act
                 field = value
                 itemView.tag = activityViewModel
                 field?.let {
+                    itemView.activityName.text = it.name
                     itemView.ratingValue.text = it.rating
                     itemView.priceValue.text = it.price
                     itemView.currencyCode.text = it.currencyCode
@@ -57,6 +58,7 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, private val act
                 field = value
                 itemView.tag = pointOfInterestViewModel
                 field?.let {
+                    itemView.pointOfInterestName.text = it.name
                     itemView.rankValue.text = it.rank.toString()
                     itemView.categoryName.text = it.category
                 }
