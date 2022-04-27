@@ -25,6 +25,6 @@ interface ApiHelper { //We can mix apis here, these are the retrofit methods we 
 
     suspend fun fetchPhotos(authorization: String, query: String) : ImagesResponse
 
-    suspend fun fetchGeoLocationFromCity(cityName: String, apiKey: String) : GeoLocationResponse
+    suspend fun fetchGeoLocationFromCity(cityName: String, apiKey: String) : List<GeoLocationResponseItem>
 
 }

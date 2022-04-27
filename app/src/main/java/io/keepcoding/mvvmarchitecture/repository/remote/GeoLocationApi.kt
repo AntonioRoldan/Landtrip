@@ -9,5 +9,5 @@ interface GeoLocationApi {
     @Headers("Content-Type: application/json")
     suspend fun fetchGeoLocationFromCity(
                                          @Query("q") cityName: String,
-                                         @Query("appid") apiKey: String) : GeoLocationResponse
+                                         @Query("appid") apiKey: String) : List<GeoLocationResponseItem>
 }

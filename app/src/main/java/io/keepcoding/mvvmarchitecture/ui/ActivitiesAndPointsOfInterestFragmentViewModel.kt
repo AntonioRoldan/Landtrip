@@ -25,7 +25,7 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                 val latitude: Double?
                 val longitude: Double?
                 val cityGeolocationApiCall = async {apiHelper.fetchGeoLocationFromCity(cityName, Api.GEOLOCATION_API_KEY) }
-                val cityResponse = cityGeolocationApiCall.await().geoLocationResponse?.get(0)
+                val cityResponse = cityGeolocationApiCall.await()[0]
                 latitude = cityResponse?.lat
                 longitude = cityResponse?.lon
                 val tokenApiCall = async { apiHelper.fetchToken(grantType = "client_credentials", clientId = Api.AMADEUS_API_KEY, clientSecret = Api.AMADEUS_API_SECRET)}

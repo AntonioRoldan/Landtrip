@@ -69,10 +69,7 @@ class HomeFragment : Fragment() {
             recommendedTripsAdapter = RecommendedTripsAdapter(it) { recommendedTripViewModel -> // We pass the lambda function
                 val navController = findNavController()
                 val bundle: Bundle = Bundle() // Since longitude returns null from the api we will search coordinates by city name so we pass city name as parameter
-                recommendedTripViewModel.name?.let { cityName ->
-                    bundle.putString(FragmentArguments.CITY_NAME, cityName)
-                }
-                bundle.putBoolean(FragmentArguments.FROM_HOME, true)
+                bundle.putString(FragmentArguments.CITY_NAME, recommendedTripViewModel.name)
                 bundle.putBoolean(FragmentArguments.FROM_SERVER, true)
                 navController.navigate(R.id.action_home_to_activities_and_points_of_interest, bundle)
             }

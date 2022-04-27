@@ -9,6 +9,7 @@ import io.keepcoding.mvvmarchitecture.repository.remote.ApiHelper
 import io.keepcoding.mvvmarchitecture.repository.remote.ApiHelperImpl
 import android.content.pm.PackageManager
 import android.util.Log
+import io.keepcoding.mvvmarchitecture.ui.ActivitiesAndPointsOfInterestFragmentViewModel
 import io.keepcoding.mvvmarchitecture.ui.homebottomnavtab.HomeFragmentViewModel
 import java.lang.IllegalArgumentException
 
@@ -25,6 +26,10 @@ class CustomViewModelFactory(private val application: Application) : ViewModelPr
                     apiHelper,
                     localHelper
                 )
+                isAssignableFrom(ActivitiesAndPointsOfInterestFragmentViewModel::class.java) -> ActivitiesAndPointsOfInterestFragmentViewModel(
+                    application,
+                    apiHelper,
+                    localHelper)
                 else -> throw IllegalArgumentException("Unknown ViewModel")
             }
         } as T

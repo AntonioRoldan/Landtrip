@@ -85,8 +85,8 @@ class ApiHelperImpl() : ApiHelper {
     override suspend fun fetchGeoLocationFromCity(
         cityName: String,
         apiKey: String
-    ): GeoLocationResponse {
-        var response: GeoLocationResponse
+    ): List<GeoLocationResponseItem> {
+        var response: List<GeoLocationResponseItem>
         withContext(Dispatchers.IO) {
             response = geoLocationService.fetchGeoLocationFromCity(cityName, apiKey)
         }
