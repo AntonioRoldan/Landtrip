@@ -60,7 +60,7 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, private val act
                 field?.let {
                     itemView.pointOfInterestName.text = it.name
                     itemView.rankValue.text = it.rank.toString()
-                    itemView.categoryName.text = it.category
+                    itemView.categoryName.text = it.category?.lowercase()
                 }
             }
     }
