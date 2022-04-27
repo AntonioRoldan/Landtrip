@@ -34,8 +34,8 @@ class ApiHelperImpl() : ApiHelper {
 
     override suspend fun fetchToursAndActivities(
         authorization: String,
-        latitude: Number,
-        longitude: Number
+        latitude: Double,
+        longitude: Double
     ): ToursAndActivitiesResponse {
         var response: ToursAndActivitiesResponse
         withContext(Dispatchers.IO) {
@@ -55,8 +55,8 @@ class ApiHelperImpl() : ApiHelper {
 
     override suspend fun fetchPointsOfInterest(
         authorization: String,
-        latitude: Number,
-        longitude: Number
+        latitude: Double,
+        longitude: Double
     ): PointsOfInterestResponse {
         var response: PointsOfInterestResponse
         withContext(Dispatchers.IO) {

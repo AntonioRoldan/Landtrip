@@ -23,8 +23,8 @@ interface AmadeusApi {
     @GET("shopping/activities")
     @Headers("Content-Type: application/json")
     suspend fun fetchToursAndActivities(@Header("Authorization") authorization: String,
-                                        @Query("latitude") latitude: Number,
-                                        @Query("longitude") longitude: Number) : ToursAndActivitiesResponse
+                                        @Query("latitude") latitude: Double,
+                                        @Query("longitude") longitude: Double) : ToursAndActivitiesResponse
 
     @GET("shopping/activities")
     @Headers("Content-Type: application/json")
@@ -35,8 +35,8 @@ interface AmadeusApi {
     @GET("reference-data/locations/pois")
     @Headers("Content-Type: application/json")
     suspend fun fetchPointsOfInterest(@Header("Authorization") authorization: String,
-                                      @Query("latitude") latitude: Number,
-                                      @Query("longitude") longitude: Number) : PointsOfInterestResponse//TODO: Check if the example from api reference was right
+                                      @Query("latitude") latitude: Double,
+                                      @Query("longitude") longitude: Double) : PointsOfInterestResponse//TODO: Check if the example from api reference was right
 
     @GET("reference-data/locations/pois")
     @Headers("Content-Type: application/json")

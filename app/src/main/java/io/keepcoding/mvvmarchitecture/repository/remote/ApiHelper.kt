@@ -15,11 +15,11 @@ interface ApiHelper { //We can mix apis here, these are the retrofit methods we 
     // We will fetch a token every time we make an api call
     suspend fun fetchRecommendedTrips(authorization: String, cityCodes: String) : RecommendedTripsResponse
 
-    suspend fun fetchToursAndActivities(authorization: String, latitude: Number, longitude: Number) : ToursAndActivitiesResponse
+    suspend fun fetchToursAndActivities(authorization: String, latitude: Double, longitude: Double) : ToursAndActivitiesResponse
 
     suspend fun fetchActivityById(authorization: String, activityId: String) : ToursAndActivitiesByIdResponse
 
-    suspend fun fetchPointsOfInterest(authorization: String, latitude: Number, longitude: Number) : PointsOfInterestResponse
+    suspend fun fetchPointsOfInterest(authorization: String, latitude: Double, longitude: Double) : PointsOfInterestResponse
 
     suspend fun fetchPointOfInterestById(authorization: String, pointOfInterestId: String) : PointOfInterestByIdResponse
 
