@@ -10,7 +10,7 @@
         <entry key="app/src/main/res/drawable/ic_my_trips.xml" value="0.1535" />
         <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.1535" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20606884057971014" />
-        <entry key="app/src/main/res/layout/activity_recycler_view_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_recycler_view_item.xml" value="0.381294964028777" />
         <entry key="app/src/main/res/layout/cities_recycler_view_item.xml" value="0.1398176291793313" />
         <entry key="app/src/main/res/layout/fragment_activities_and_points_of_interest.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_activity_detail.xml" value="0.1" />

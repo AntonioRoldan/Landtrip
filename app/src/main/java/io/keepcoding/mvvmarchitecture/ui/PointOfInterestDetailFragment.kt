@@ -25,14 +25,13 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         receiveArguments()
-        setUpMapFragment()
-        setUpUI()
-        setUpObservers()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setUpMapFragment()
+        setUpUI()
+        setUpObservers()
     }
 
     override fun onCreateView(

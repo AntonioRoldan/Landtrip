@@ -5,29 +5,33 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import io.keepcoding.mvvmarchitecture.R
+import io.keepcoding.mvvmarchitecture.utils.FragmentArguments
+import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ActivityDetailFragment.newInstance] factory method to
+ * Use the [PointOfInterestDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ActivityDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
+    // TODO: Add view model
+    private lateinit var activityViewModel: ActivityViewModel
+    private var fromServer: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        receiveArguments()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpMapFragment()
+        setUpUI()
+        setUpObservers()
     }
 
     override fun onCreateView(
@@ -35,26 +39,50 @@ class ActivityDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_activity_detail, container, false)
+        return inflater.inflate(R.layout.fragment_point_of_interest_detail, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ActivityDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ActivityDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onMapReady(p0: GoogleMap) {
+        TODO("Not yet implemented")
+    }
+
+    private fun fetchData() {
+        if(fromServer){
+            // We fetch the data from the server
+        } else {
+            // We fetch the data from room
+        }
+    }
+
+    private fun setUpListeners(){
+        visitedCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            // TODO: Set visited variable on room object
+
+        }
+    }
+
+    private fun setUpUI(){
+        if(fromServer){
+            visitedCheckbox.visibility = View.INVISIBLE
+        }
+    }
+    private fun setUpObservers(){
+
+    }
+
+    private fun setUpMapFragment(){
+        val mapFragment: SupportMapFragment = childFragmentManager.findFragmentById(R.id.activityMap) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+    private fun receiveArguments() {
+        arguments?.let {
+            fromServer = it.getBoolean(FragmentArguments.FROM_SERVER)
+            if(!fromServer){ //If we are fetching data from local we must have a parcelable as argument
+                it.getParcelable<ActivityViewModel>(FragmentArguments.POINT_OF_INTEREST_PARCELABLE)?.let { parcelable ->
+                    activityViewModel = parcelable
                 }
             }
+        }
     }
 }

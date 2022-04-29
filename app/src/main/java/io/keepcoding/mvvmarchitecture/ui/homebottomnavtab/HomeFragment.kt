@@ -59,10 +59,6 @@ class HomeFragment : Fragment() {
         setUpObservers()
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun setAdapter(){
         context?.let {
             recommendedTripsAdapter = RecommendedTripsAdapter(it) { recommendedTripViewModel -> // We pass the lambda function

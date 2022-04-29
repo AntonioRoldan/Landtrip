@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.try_again_view.*
 class ActivitiesAndPointsOfInterestFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
-    var fromServer: Boolean = false
+    private var fromServer: Boolean = false
     var cityName: String = ""
     var tripId = ""
 
@@ -136,6 +136,7 @@ class ActivitiesAndPointsOfInterestFragment : Fragment() {
             }
         })
     }
+
     private fun receiveArguments() {
         arguments?.let {
             fromServer = it.getBoolean(FragmentArguments.FROM_SERVER)

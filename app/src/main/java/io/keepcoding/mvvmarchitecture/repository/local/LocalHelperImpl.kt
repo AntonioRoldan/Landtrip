@@ -1,6 +1,8 @@
 package io.keepcoding.mvvmarchitecture.repository.local
 
 import android.content.Context
+import io.keepcoding.mvvmarchitecture.domain.PointOfInterestEntity
+import io.keepcoding.mvvmarchitecture.domain.TourActivityEntity
 import io.keepcoding.mvvmarchitecture.domain.TripEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -41,6 +43,20 @@ class LocalHelperImpl(private val context: Context) : LocalHelper {
     override suspend fun deleteTrip(tripEntity: TripEntity) {
         withContext(Dispatchers.IO){
             appDatabase.dataNameDao().deleteTripWithToursActivitiesAndPointsOfInterest(tripEntity)
+        }
+    }
+
+    @OptIn(InternalCoroutinesApi::class)
+    override suspend fun saveTourActivity(tourActivityEntity: TourActivityEntity) {
+        withContext(Dispatchers.IO) {
+            appDatabase.dataNameDao().insertTourActivity(tourActivityEntity)
+        }
+    }
+
+    @OptIn(InternalCoroutinesApi::class)
+    override suspend fun savePointOfInterest(pointOfInterestEntity: PointOfInterestEntity) {
+        withContext(Dispatchers.IO) {
+            appDatabase.dataNameDao().insertPointOfInterest(pointOfInterestEntity)
         }
     }
 }
