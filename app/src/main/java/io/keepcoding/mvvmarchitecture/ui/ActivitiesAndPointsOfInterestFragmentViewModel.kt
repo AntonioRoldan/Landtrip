@@ -112,16 +112,16 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                 val tripDatabaseCall = async {localHelper.getTripWithToursActivitiesAndPointsOfInterest(tripId) }
                 val tripWithActivitiesAndPointsOfInterest: TripEntity = tripDatabaseCall.await()
                 val activitiesAndPointsOfInterestViewModels: MutableList<ActivitiesAndPointOfInterestItemInterface?> = mutableListOf(null)
-                val pointsOfInterestViewModels = tripWithActivitiesAndPointsOfInterest.pointsOfInterest.map {
+                val pointsOfInterestViewModels = tripWithActivitiesAndPointsOfInterest.pointsOfInterest?.map {
                     PointOfInterestViewModel(name = it.name, category = it.category, rank = it.rank, latitude = it.latitude, longitude = it.longitude, visited = it.visited)
                 }
-                val activitiesViewModels = tripWithActivitiesAndPointsOfInterest.toursAndActivities.map {
-                    ActivityViewModel(name = it.name, rating = it.rating.toString(), price = "", currencyCode = "", image = it.image, shortDescription = it.shortDescription)
+                val activitiesViewModels = tripWithActivitiesAndPointsOfInterest.toursAndActivities?.map {
+                    ActivityViewModel(name = it.name, rating = it.rating.toString(), price = "", currencyCode = "", image = it.image, shortDescription = it.shortDescription, latitude = it.latitude, longitude = it.longitude)
                 }
-                activitiesViewModels.forEach {
+                activitiesViewModels?.forEach {
                     activitiesAndPointsOfInterestViewModels.add(it)
                 }
-                pointsOfInterestViewModels.forEach {
+                pointsOfInterestViewModels?.forEach {
                     activitiesAndPointsOfInterestViewModels.add(it)
                 }
                 activitiesAndPointsOfInterest.postValue(Resource.success(activitiesAndPointsOfInterestViewModels))
