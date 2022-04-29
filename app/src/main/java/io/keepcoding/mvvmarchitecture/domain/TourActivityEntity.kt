@@ -9,13 +9,13 @@ data class TourActivityEntity(
     @PrimaryKey
     var id: String = UUID.randomUUID().toString(),
     var tripId: String? = null, //Reference
-    var name: String,
-    var shortDescription: String,
-    var rating: Double,
-    var latitude: Double,
-    var longitude: Double,
-    var image: String,
-    var price: String,
-    var currencyCode: String,
-    var finished: Boolean
+    var name: String?,
+    var shortDescription: String?,
+    var rating: Double?,
+    var latitude: Double?,
+    var longitude: Double?,
+    var image: String?,
+    var price: String?,
+    var currencyCode: String?,
+    var finished: Boolean?
 )

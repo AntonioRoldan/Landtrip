@@ -10,12 +10,12 @@ import java.util.*
 @Entity(tableName = "trips_table")
 data class TripEntity(
     @PrimaryKey var id: String = UUID.randomUUID().toString(),
-    var name: String,
+    var name: String?,
     @Ignore
-    var toursAndActivities: MutableList<TourActivityEntity> = mutableListOf(),
+    var toursAndActivities: MutableList<TourActivityEntity>? = mutableListOf(),
     @Ignore
-    var pointsOfInterest: MutableList<PointOfInterestEntity> = mutableListOf()
+    var pointsOfInterest: MutableList<PointOfInterestEntity>? = mutableListOf()
 ){
-    constructor(id: String, name: String) : this(id, name, mutableListOf(), mutableListOf())
+    constructor(id: String, name: String?) : this(id, name, mutableListOf(), mutableListOf())
 }
 

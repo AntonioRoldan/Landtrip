@@ -11,11 +11,11 @@ data class PointOfInterestEntity(
     @PrimaryKey
     var id: String = UUID.randomUUID().toString(),
     var tripId: String? = null,
-    var name: String,
-    var category: String,
-    var rank: Int,
-    var tags: List<String>,
-    var latitude: Double,
-    var longitude: Double,
-    var visited: Boolean
+    var name: String?,
+    var category: String?,
+    var rank: Int?,
+    var tags: List<String>?,
+    var latitude: Double?,
+    var longitude: Double?,
+    var visited: Boolean?
 )

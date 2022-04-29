@@ -75,7 +75,11 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                                             name = activityDataItem?.name,
                                             currencyCode = activityDataItem?.price?.currencyCode,
                                             price = activityDataItem?.price?.amount,
-                                            rating = activityDataItem?.rating
+                                            rating = activityDataItem?.rating,
+                                            image = activityDataItem?.pictures?.get(0),
+                                            shortDescription = activityDataItem?.shortDescription,
+                                            latitude = activityDataItem?.geoCode?.latitude?.toDouble(),
+                                            longitude = activityDataItem?.geoCode?.longitude?.toDouble()
                                         )
                                     }
                                 val activitiesAndPointsOfInterestViewModels: MutableList<ActivitiesAndPointOfInterestItemInterface?> =
@@ -102,8 +106,8 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
     }
 
     fun fetchActivitiesAndPointsOfInterestFromLocal(tripId: String){
-        try {
-            viewModelScope.launch {
+        viewModelScope.launch {
+            try {
                 activitiesAndPointsOfInterest.postValue(Resource.loading(null))
                 val tripDatabaseCall = async {localHelper.getTripWithToursActivitiesAndPointsOfInterest(tripId) }
                 val tripWithActivitiesAndPointsOfInterest: TripEntity = tripDatabaseCall.await()
@@ -112,7 +116,7 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                     PointOfInterestViewModel(name = it.name, category = it.category, rank = it.rank, latitude = it.latitude, longitude = it.longitude, visited = it.visited)
                 }
                 val activitiesViewModels = tripWithActivitiesAndPointsOfInterest.toursAndActivities.map {
-                    ActivityViewModel(name = it.name, rating = it.rating.toString(), price = "", currencyCode = "")
+                    ActivityViewModel(name = it.name, rating = it.rating.toString(), price = "", currencyCode = "", image = it.image, shortDescription = it.shortDescription)
                 }
                 activitiesViewModels.forEach {
                     activitiesAndPointsOfInterestViewModels.add(it)
@@ -121,9 +125,9 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                     activitiesAndPointsOfInterestViewModels.add(it)
                 }
                 activitiesAndPointsOfInterest.postValue(Resource.success(activitiesAndPointsOfInterestViewModels))
+            } catch (e: Exception) {
+                activitiesAndPointsOfInterest.postValue(Resource.error(e.localizedMessage!!, null))
             }
-        } catch (e: Exception){
-            activitiesAndPointsOfInterest.postValue(Resource.error(e.localizedMessage!!, null))
         }
     }
 
