@@ -62,11 +62,14 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
     }
     fun savePointOfInterest(tripRoomId: String, pointOfInterestViewModel: PointOfInterestViewModel){
         try {
-            val pointOfInterestEntity: PointOfInterestEntity = PointOfInterestEntity(
-                tripId = tripRoomId,
-                latitude = pointOfInterestViewModel.latitude,
-                longitude = pointOfInterestViewModel.longitude
-            )
+            //val pointOfInterestEntity: PointOfInterestEntity = PointOfInterestEntity(
+            //                tripId = tripRoomId,
+            //                latitude = pointOfInterestViewModel.latitude,
+            //                longitude = pointOfInterestViewModel.longitude,
+            //                rank = pointOfInterestViewModel.rank,
+            //
+            //            )
+
         } catch (e: Exception) {
             Log.e("Save point of interest", e.localizedMessage!!)
         }
