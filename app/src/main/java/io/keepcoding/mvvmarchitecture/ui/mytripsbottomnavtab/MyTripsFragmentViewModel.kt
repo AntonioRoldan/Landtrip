@@ -1,6 +1,7 @@
 package io.keepcoding.mvvmarchitecture.ui.mytripsbottomnavtab
 
 import android.app.Application
+import android.graphics.Point
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,7 @@ import java.util.*
 
 class MyTripsFragmentViewModel(private val context: Application, private val apiHelper: ApiHelper, private val localHelper: LocalHelper) : ViewModel() {
     var tripsViewModels = MutableLiveData<Resource<List<TripViewModel?>>>()
+    var snackbar = MutableLiveData<Resource<String>>()
 
     fun fetchTripsFromLocal() {
         viewModelScope.launch {
@@ -54,7 +56,7 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
                 )
                 val saveActivityDatabaseCall = async { localHelper.saveTourActivity(activityEntity) }
                 saveActivityDatabaseCall.await()
-                //TODO: Add a snackbar to notify user of the status of the app
+                snackbar.postValue(Resource.success("Activity saved"))
             } catch (e: Exception) {
                 Log.e("Save activity error", e.localizedMessage!!)
             }
@@ -62,14 +64,20 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
     }
     fun savePointOfInterest(tripRoomId: String, pointOfInterestViewModel: PointOfInterestViewModel){
         try {
-            //val pointOfInterestEntity: PointOfInterestEntity = PointOfInterestEntity(
-            //                tripId = tripRoomId,
-            //                latitude = pointOfInterestViewModel.latitude,
-            //                longitude = pointOfInterestViewModel.longitude,
-            //                rank = pointOfInterestViewModel.rank,
-            //
-            //            )
-
+            viewModelScope.launch {
+                val pointOfInterestEntity: PointOfInterestEntity = PointOfInterestEntity(
+                    tripId = tripRoomId,
+                    rank = pointOfInterestViewModel.rank,
+                    category = pointOfInterestViewModel.category,
+                    name = pointOfInterestViewModel.name,
+                    visited = pointOfInterestViewModel.visited,
+                    latitude = pointOfInterestViewModel.latitude,
+                    longitude = pointOfInterestViewModel.longitude
+                )
+                val savePointOfInterestDatabaseCall = async { localHelper.savePointOfInterest(pointOfInterestEntity) }
+                savePointOfInterestDatabaseCall.await()
+                snackbar.postValue(Resource.success("Point of interest saved"))
+            }
         } catch (e: Exception) {
             Log.e("Save point of interest", e.localizedMessage!!)
         }

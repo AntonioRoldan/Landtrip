@@ -14,7 +14,6 @@ data class PointOfInterestEntity(
     var name: String?,
     var category: String?,
     var rank: Int?,
-    var tags: List<String>?,
     var latitude: Double?,
     var longitude: Double?,
     var visited: Boolean?

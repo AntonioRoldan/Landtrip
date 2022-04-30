@@ -59,4 +59,18 @@ class LocalHelperImpl(private val context: Context) : LocalHelper {
             appDatabase.dataNameDao().insertPointOfInterest(pointOfInterestEntity)
         }
     }
+
+    @OptIn(InternalCoroutinesApi::class)
+    override suspend fun updateTourActivity(finished: Boolean) {
+        withContext(Dispatchers.IO){
+            appDatabase.dataNameDao().updateTourActivity(finished)
+        }
+    }
+
+    @OptIn(InternalCoroutinesApi::class)
+    override suspend fun updatePointOfInterest(visited: Boolean) {
+        withContext(Dispatchers.IO) {
+            appDatabase.dataNameDao().updatePointOfInterest(visited)
+        }
+    }
 }

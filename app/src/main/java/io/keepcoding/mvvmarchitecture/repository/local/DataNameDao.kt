@@ -30,6 +30,12 @@ abstract class DataNameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertPointOfInterest(pointOfInterest: PointOfInterestEntity)
 
+    @Query("UPDATE tours_and_activities_table SET finished = :finished")
+    abstract fun updateTourActivity(finished: Boolean)
+
+    @Query("UPDATE points_of_interest_table SET visited = :visited")
+    abstract fun updatePointOfInterest(visited: Boolean)
+
     @Delete
     abstract fun deleteTrip(entity: TripEntity)
 
@@ -40,8 +46,8 @@ abstract class DataNameDao {
     abstract fun deletePointOfInterest(pointOfInterest: PointOfInterestEntity)
 
     fun insertTripWithToursActivitiesAndPointsOfInterest(tripEntity: TripEntity){
-        var toursAndActivities: MutableList<TourActivityEntity> = tripEntity.toursAndActivities
-        var pointsOfInterest: MutableList<PointOfInterestEntity> = tripEntity.pointsOfInterest
+        var toursAndActivities: MutableList<TourActivityEntity> = tripEntity.toursAndActivities!!
+        var pointsOfInterest: MutableList<PointOfInterestEntity> = tripEntity.pointsOfInterest!!
         for(tourAndActivity in toursAndActivities){
             tourAndActivity.tripId = tripEntity.id
             insertTourActivity(tourAndActivity)
@@ -63,11 +69,13 @@ abstract class DataNameDao {
     }
 
     fun deleteTripWithToursActivitiesAndPointsOfInterest(tripEntity: TripEntity){
-        for(tourAndActivity in tripEntity.toursAndActivities){
-            deleteTourActivity(tourAndActivity)
-        }
-        for(pointOfInterest in tripEntity.pointsOfInterest){
-            deletePointOfInterest(pointOfInterest)
+        if(tripEntity.toursAndActivities != null && tripEntity.pointsOfInterest != null){
+            for(tourAndActivity in tripEntity.toursAndActivities!!){
+                deleteTourActivity(tourAndActivity)
+            }
+            for(pointOfInterest in tripEntity.pointsOfInterest!!){
+                deletePointOfInterest(pointOfInterest)
+            }
         }
         deleteTrip(tripEntity)
     }

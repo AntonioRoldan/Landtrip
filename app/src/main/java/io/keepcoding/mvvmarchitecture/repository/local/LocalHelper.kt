@@ -18,4 +18,8 @@ interface LocalHelper {
     suspend fun saveTourActivity(tourActivityEntity: TourActivityEntity)
 
     suspend fun savePointOfInterest(pointOfInterestEntity: PointOfInterestEntity)
+
+    suspend fun updateTourActivity(finished: Boolean)
+
+    suspend fun updatePointOfInterest(visited: Boolean)
 }

@@ -14,6 +14,7 @@ import io.keepcoding.mvvmarchitecture.ui.ActivityDetailFragmentViewModel
 import io.keepcoding.mvvmarchitecture.ui.AddTripFragmentViewModel
 import io.keepcoding.mvvmarchitecture.ui.PointOfInterestDetailFragmentViewModel
 import io.keepcoding.mvvmarchitecture.ui.homebottomnavtab.HomeFragmentViewModel
+import io.keepcoding.mvvmarchitecture.ui.mytripsbottomnavtab.MyTripsFragmentViewModel
 import java.lang.IllegalArgumentException
 
 @Suppress("UNCHECKED_CAST")
@@ -44,6 +45,11 @@ class CustomViewModelFactory(private val application: Application) : ViewModelPr
                     localHelper
                 )
                 isAssignableFrom(AddTripFragmentViewModel::class.java) -> AddTripFragmentViewModel(
+                    application,
+                    apiHelper,
+                    localHelper
+                )
+                isAssignableFrom(MyTripsFragmentViewModel::class.java) -> MyTripsFragmentViewModel(
                     application,
                     apiHelper,
                     localHelper

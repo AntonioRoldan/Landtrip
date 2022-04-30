@@ -14,7 +14,7 @@ import kotlinx.coroutines.internal.synchronized
 
 // Each entity is a table with a table name
 @Database(entities = [TripEntity::class, TourActivityEntity::class, PointOfInterestEntity::class], version = 1, exportSchema = false)
-@TypeConverters(StringListTypeConverter::class)
+@TypeConverters(StringListTypeConverter::class) // We are not using this since we removed the tag column but it's useful for learning
 abstract class TripsRoomDatabase : RoomDatabase() {
     abstract fun dataNameDao() : DataNameDao
 
