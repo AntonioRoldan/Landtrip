@@ -1,8 +1,7 @@
 package io.keepcoding.mvvmarchitecture.ui.mytripsbottomnavtab
 
 import android.app.Application
-import android.graphics.Point
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,7 +16,6 @@ import io.keepcoding.mvvmarchitecture.utils.Resource
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import java.util.*
 
 class MyTripsFragmentViewModel(private val context: Application, private val apiHelper: ApiHelper, private val localHelper: LocalHelper) : ViewModel() {
     var tripsViewModels = MutableLiveData<Resource<List<TripViewModel?>>>()
@@ -58,13 +56,14 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
                 saveActivityDatabaseCall.await()
                 snackbar.postValue(Resource.success("Activity saved"))
             } catch (e: Exception) {
-                Log.e("Save activity error", e.localizedMessage!!)
+                snackbar.postValue(Resource.error(e.localizedMessage!!, e.localizedMessage!!))
             }
         }
     }
-    fun savePointOfInterest(tripRoomId: String, pointOfInterestViewModel: PointOfInterestViewModel){
-        try {
-            viewModelScope.launch {
+
+    fun savePointOfInterest(tripRoomId: String, pointOfInterestViewModel: PointOfInterestViewModel) {
+        viewModelScope.launch {
+            try {
                 val pointOfInterestEntity: PointOfInterestEntity = PointOfInterestEntity(
                     tripId = tripRoomId,
                     rank = pointOfInterestViewModel.rank,
@@ -77,9 +76,16 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
                 val savePointOfInterestDatabaseCall = async { localHelper.savePointOfInterest(pointOfInterestEntity) }
                 savePointOfInterestDatabaseCall.await()
                 snackbar.postValue(Resource.success("Point of interest saved"))
+            } catch (e: Exception) {
+                snackbar.postValue(Resource.error(e.localizedMessage!!, e.localizedMessage!!))
             }
-        } catch (e: Exception) {
-            Log.e("Save point of interest", e.localizedMessage!!)
         }
     }
-}
+    fun getTrips() : LiveData<Resource<List<TripViewModel?>>> {
+        return tripsViewModels
+    }
+
+    fun getSnackbar() : LiveData<Resource<String>> {
+        return snackbar
+    }
+ }

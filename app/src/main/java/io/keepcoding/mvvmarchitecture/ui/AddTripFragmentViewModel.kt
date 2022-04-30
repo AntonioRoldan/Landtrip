@@ -14,8 +14,8 @@ class AddTripFragmentViewModel(private val context: Application, private val api
 
     fun saveTrip(name: String) {
         viewModelScope.launch {
-            val saveEventOperation = async { localHelper.saveTrip(TripEntity(id = UUID.randomUUID().toString(), name)) }
-            saveEventOperation.await()
+            val saveTripDatabaseCall = async { localHelper.saveTrip(TripEntity(id = UUID.randomUUID().toString(), name)) }
+            saveTripDatabaseCall.await()
         }
     }
 
