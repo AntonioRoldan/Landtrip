@@ -73,4 +73,18 @@ class LocalHelperImpl(private val context: Context) : LocalHelper {
             appDatabase.dataNameDao().updatePointOfInterest(visited)
         }
     }
+
+    @OptIn(InternalCoroutinesApi::class)
+    override suspend fun deleteTourActivity(id: String) {
+        withContext(Dispatchers.IO) {
+            appDatabase.dataNameDao().deleteTourActivity(id)
+        }
+    }
+
+    @OptIn(InternalCoroutinesApi::class)
+    override suspend fun deletePointOfInterest(id: String) {
+        withContext(Dispatchers.IO){
+            appDatabase.dataNameDao().deletePointOfInterest(id)
+        }
+    }
 }

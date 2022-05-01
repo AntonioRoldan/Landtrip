@@ -39,15 +39,16 @@ abstract class DataNameDao {
     @Delete
     abstract fun deleteTrip(entity: TripEntity)
 
-    @Delete
-    abstract fun deleteTourActivity(tourActivityEntity: TourActivityEntity)
+    @Query("DELETE FROM tours_and_activities_table WHERE id = :id")
+    abstract fun deleteTourActivity(id: String)
 
-    @Delete
-    abstract fun deletePointOfInterest(pointOfInterest: PointOfInterestEntity)
+
+    @Query("DELETE FROM points_of_interest_table WHERE id = :id")
+    abstract fun deletePointOfInterest(id: String)
 
     fun insertTripWithToursActivitiesAndPointsOfInterest(tripEntity: TripEntity){
-        var toursAndActivities: MutableList<TourActivityEntity> = tripEntity.toursAndActivities!!
-        var pointsOfInterest: MutableList<PointOfInterestEntity> = tripEntity.pointsOfInterest!!
+        val toursAndActivities: MutableList<TourActivityEntity> = tripEntity.toursAndActivities!!
+        val pointsOfInterest: MutableList<PointOfInterestEntity> = tripEntity.pointsOfInterest!!
         for(tourAndActivity in toursAndActivities){
             tourAndActivity.tripId = tripEntity.id
             insertTourActivity(tourAndActivity)
@@ -71,10 +72,10 @@ abstract class DataNameDao {
     fun deleteTripWithToursActivitiesAndPointsOfInterest(tripEntity: TripEntity){
         if(tripEntity.toursAndActivities != null && tripEntity.pointsOfInterest != null){
             for(tourAndActivity in tripEntity.toursAndActivities!!){
-                deleteTourActivity(tourAndActivity)
+                deleteTourActivity(tourAndActivity.id)
             }
             for(pointOfInterest in tripEntity.pointsOfInterest!!){
-                deletePointOfInterest(pointOfInterest)
+                deletePointOfInterest(pointOfInterest.id)
             }
         }
         deleteTrip(tripEntity)

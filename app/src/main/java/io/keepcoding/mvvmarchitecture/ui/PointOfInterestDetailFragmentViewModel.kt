@@ -50,12 +50,23 @@ class PointOfInterestDetailFragmentViewModel(private val context: Application, p
         }
     }
 
-    fun updateVisitedFieldOfActivityEntityFromLocal(visited: Boolean) {
+    fun updateVisitedFieldOfPointOfInterestEntityFromLocal(visited: Boolean) {
         viewModelScope.launch {
             try {
                 val updateVisitedFieldFromPointOfInterestEntityDatabaseCall = async { localHelper.updatePointOfInterest(visited) }
                 updateVisitedFieldFromPointOfInterestEntityDatabaseCall.await()
                 snackbar.postValue(Resource.success("Visited checked"))
+            } catch (e: Exception) {
+                snackbar.postValue(Resource.error(e.localizedMessage!!, null))
+            }
+        }
+    }
+
+    fun deletePointOfInterest(id: String){
+        viewModelScope.launch {
+            try {
+                val deletePointOfInterestDatabaseCall = async { localHelper.deletePointOfInterest(id)}
+                deletePointOfInterestDatabaseCall.await()
             } catch (e: Exception) {
                 snackbar.postValue(Resource.error(e.localizedMessage!!, null))
             }

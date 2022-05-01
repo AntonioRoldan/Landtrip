@@ -53,6 +53,17 @@ class ActivityDetailFragmentViewModel(private val context: Application, private 
         }
     }
 
+    fun deleteActivity(id: String){
+        viewModelScope.launch {
+            try {
+                val deleteActivityDatabaseCall = async { localHelper.deleteTourActivity(id)}
+                deleteActivityDatabaseCall.await()
+            } catch (e: Exception) {
+                snackbar.postValue(Resource.error(e.localizedMessage!!, null))
+            }
+        }
+    }
+
     fun updateVisitedFieldOfActivityEntityFromLocal(visited: Boolean) {
         viewModelScope.launch {
             try {
