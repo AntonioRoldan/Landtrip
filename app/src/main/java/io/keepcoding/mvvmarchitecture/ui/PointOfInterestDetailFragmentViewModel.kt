@@ -13,7 +13,10 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class PointOfInterestDetailFragmentViewModel(private val context: Application, private val apiHelper: ApiHelper, private val localHelper: LocalHelper) : ViewModel() {
+
     var pointOfInterestDetailViewModel = MutableLiveData<Resource<PointOfInterestViewModel?>>()
+
+    var snackbar = MutableLiveData<Resource<String>>()
 
     fun fetchPointOfInterestFromServer(id: String) {
         viewModelScope.launch {
@@ -47,9 +50,25 @@ class PointOfInterestDetailFragmentViewModel(private val context: Application, p
         }
     }
 
+    fun updateVisitedFieldOfActivityEntityFromLocal(visited: Boolean) {
+        viewModelScope.launch {
+            try {
+                val updateVisitedFieldFromPointOfInterestEntityDatabaseCall = async { localHelper.updatePointOfInterest(visited) }
+                updateVisitedFieldFromPointOfInterestEntityDatabaseCall.await()
+                snackbar.postValue(Resource.success("Visited checked"))
+            } catch (e: Exception) {
+                snackbar.postValue(Resource.error(e.localizedMessage!!, null))
+            }
+        }
+    }
+
     // We do not need to make a database call and fetch from local since we will pass the parcelable to this fragment as an argument
 
     fun getPointOfInterestDetailViewModel() : LiveData<Resource<PointOfInterestViewModel?>> {
         return pointOfInterestDetailViewModel
+    }
+
+    fun getSnackbar() : LiveData<Resource<String>> {
+        return snackbar
     }
 }

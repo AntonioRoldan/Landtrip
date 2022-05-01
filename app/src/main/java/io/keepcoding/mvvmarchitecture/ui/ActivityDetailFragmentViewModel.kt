@@ -5,17 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.keepcoding.mvvmarchitecture.domain.TourActivityEntity
 import io.keepcoding.mvvmarchitecture.repository.local.LocalHelper
 import io.keepcoding.mvvmarchitecture.repository.remote.ApiHelper
 import io.keepcoding.mvvmarchitecture.utils.Api
 import io.keepcoding.mvvmarchitecture.utils.Resource
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import java.util.*
 
 class ActivityDetailFragmentViewModel(private val context: Application, private val apiHelper: ApiHelper, private val localHelper: LocalHelper) : ViewModel() {
-    var activityDetailViewModel = MutableLiveData<Resource<ActivityViewModel?>>()
+    private var activityDetailViewModel = MutableLiveData<Resource<ActivityViewModel?>>()
+
+    var snackbar = MutableLiveData<Resource<String>>()
 
     fun fetchActivityFromServer(id: String) {
         viewModelScope.launch {
@@ -53,7 +53,25 @@ class ActivityDetailFragmentViewModel(private val context: Application, private 
         }
     }
 
+    fun updateVisitedFieldOfActivityEntityFromLocal(visited: Boolean) {
+        viewModelScope.launch {
+            try {
+                val updateVisitedFieldFromActivityEntityDatabaseCall = async { localHelper.updateTourActivity(visited) }
+                updateVisitedFieldFromActivityEntityDatabaseCall.await()
+                snackbar.postValue(Resource.success("Visited checked"))
+            } catch (e: Exception) {
+                snackbar.postValue(Resource.error(e.localizedMessage!!, null))
+            }
+        }
+    }
+
+    // We do not need to make a database call and fetch from local since we will pass the parcelable to this fragment as an argument
+
     fun getActivityDetailViewModel() : LiveData<Resource<ActivityViewModel?>> {
         return activityDetailViewModel
+    }
+
+    fun getSnackbar() : LiveData<Resource<String>> {
+        return snackbar
     }
 }
