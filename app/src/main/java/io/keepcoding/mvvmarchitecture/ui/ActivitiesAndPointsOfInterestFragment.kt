@@ -114,7 +114,6 @@ class ActivitiesAndPointsOfInterestFragment : Fragment() {
             activitiesAndPointsOfInterestViewModels.data?.let {
                 when(activitiesAndPointsOfInterestViewModels.status) {
                     Status.SUCCESS -> {
-                        Log.v("DATA", it.toString())
                         activitiesAndPointsOfInterest = it
                         activitiesAndPointsOfInterestLoadingView.visibility = View.GONE
                         activitiesAndPointsOfInterestRetry.visibility = View.GONE

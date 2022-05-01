@@ -21,7 +21,9 @@ import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.*
 class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
     // TODO: Add view model
     private lateinit var activityViewModel: ActivityViewModel
+
     private var fromServer: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         receiveArguments()
