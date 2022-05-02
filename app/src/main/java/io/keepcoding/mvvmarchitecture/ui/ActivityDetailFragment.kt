@@ -31,7 +31,7 @@ import kotlinx.android.synthetic.main.recommended_trip_recycler_view_item.view.*
  * create an instance of this fragment.
  */
 class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
-    // TODO: Add view model
+
     private lateinit var activityViewModel: ActivityViewModel
 
     private lateinit var id: String
@@ -176,6 +176,7 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun setUpObservers(){
+        fetchData()
         viewModel.getActivityDetailViewModel().observe(viewLifecycleOwner, Observer {
             when(it.status){
                 Status.SUCCESS -> {
@@ -204,6 +205,7 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
                 it.getParcelable<ActivityViewModel>(FragmentArguments.ACTIVITY_PARCELABLE)?.let { parcelable ->
                     activityViewModel = parcelable
                 }
+            } else{
                 it.getString(FragmentArguments.ACTIVITY_ID)?.let { activityId ->
                     id = activityId
                 }

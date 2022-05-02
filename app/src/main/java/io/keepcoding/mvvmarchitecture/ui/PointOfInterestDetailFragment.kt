@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.*
  * create an instance of this fragment.
  */
 class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
-    // TODO: Add view model
 
     private val viewModel: PointOfInterestDetailFragmentViewModel by lazy {
         val factory = CustomViewModelFactory(requireActivity().application)
@@ -178,9 +177,9 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
                 it.getParcelable<PointOfInterestViewModel>(FragmentArguments.POINT_OF_INTEREST_PARCELABLE)?.let { parcelable ->
                     pointOfInterestViewModel = parcelable
                 }
-                it.getString(FragmentArguments.POINT_OF_INTEREST_ID)?.let { pointOfInterestId ->
-                    id = pointOfInterestId
-                }
+            }
+            it.getString(FragmentArguments.ACTIVITY_ID)?.let { activityId ->
+                id = activityId
             }
         }
     }
