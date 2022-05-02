@@ -168,7 +168,7 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         activityName.text = viewModel?.name
         context?.let {
             Glide.with(it)
-                .load(activityViewModel?.image)
+                .load(viewModel?.image)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(activityImage)
         }
