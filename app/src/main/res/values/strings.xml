@@ -35,4 +35,5 @@
     <string name="trip_name">Trip name</string>
     <string name="add_trip_edit_text">Type in your trip name</string>
     <string name="activity_picture">Activity picture</string>
+    <string name="there_are_no_added_trips">There are no added trips</string>
 </resources>

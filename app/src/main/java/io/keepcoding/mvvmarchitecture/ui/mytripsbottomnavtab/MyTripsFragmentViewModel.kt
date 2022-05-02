@@ -30,7 +30,9 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
                 val tmpTripsViewModels = trips.map {
                     TripViewModel(it.id, it.name)
                 }
+                //TODO: Check if it's empty from fragment class
                 tripsViewModels.postValue(Resource.success(tmpTripsViewModels))
+
             } catch (e: Exception) {
                 tripsViewModels.postValue(Resource.error(e.localizedMessage!!, null))
             }

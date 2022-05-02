@@ -11,10 +11,11 @@
         layout="@layout/loading_view" />
 
     <include
-        android:id="@+id/retry"
+        android:id="@+id/no_trips_added"
         layout="@layout/try_again_view"
         android:visibility="invisible"
         />
+
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tripsList"
