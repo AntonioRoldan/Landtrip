@@ -10,53 +10,59 @@
         android:id="@+id/loadingView"
         layout="@layout/loading_view" />
 
+    <!-- TODO: Update blank fragment layout -->
     <include
         android:id="@+id/retry"
         layout="@layout/try_again_view"
         android:visibility="invisible"
-        />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="67dp" />
 
-    <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:id="@+id/activityImage"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        app:layout_constraintHeight_percent="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/activityName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="invisible"
+        android:layout_width="411dp"
+        android:layout_height="208dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="Activity picture"
         android:src="@drawable/ic_launcher_background"
-        android:contentDescription="Activity picture" />
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/activityName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/activityName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Activity name"
+        android:layout_marginBottom="484dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:textSize="15sp"
+        android:text="Activity name"
         android:textColor="@color/black"
+        android:textSize="15sp"
         android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/activityMap"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/visitedCheckbox"
-        />
+        app:layout_constraintHorizontal_bias="0.012"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activityImage" />
 
     <CheckBox
         android:id="@+id/visitedCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="472dp"
         android:text="@string/visited"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintHorizontal_bias="0.979"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activityMap"
-        app:layout_constraintVertical_bias="0.502" />
+        app:layout_constraintTop_toBottomOf="@id/activityImage"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/description"
@@ -72,16 +78,16 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/activityMap"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_width="268dp"
+        android:layout_height="155dp"
+        android:layout_marginBottom="80dp"
         android:visibility="invisible"
-        app:layout_constraintHeight_percent="0.25"
-        app:layout_constraintTop_toBottomOf="@id/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-         />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description"
+        app:layout_constraintVertical_bias="0.953" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

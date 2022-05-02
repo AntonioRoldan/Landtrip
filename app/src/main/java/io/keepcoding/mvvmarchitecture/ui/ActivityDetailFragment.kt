@@ -25,11 +25,7 @@ import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.visitedC
 import kotlinx.android.synthetic.main.recommended_trip_recycler_view_item.view.*
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PointOfInterestDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
 
     private var activityViewModel: ActivityViewModel? = null
@@ -115,7 +111,7 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         activityName.visibility = View.VISIBLE
         activityImage.visibility = View.VISIBLE
         description.visibility = View.VISIBLE
-        visitedCheckbox.visibility = View.VISIBLE
+        visitedCheckbox.visibility = View.INVISIBLE
         loadingView.visibility = View.GONE
         retry.visibility = View.GONE
     }
