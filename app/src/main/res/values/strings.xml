@@ -34,4 +34,5 @@
     <string name="visited">Visited</string>
     <string name="trip_name">Trip name</string>
     <string name="add_trip_edit_text">Type in your trip name</string>
+    <string name="activity_picture">Activity picture</string>
 </resources>

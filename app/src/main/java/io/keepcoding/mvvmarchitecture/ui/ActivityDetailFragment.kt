@@ -111,7 +111,11 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         activityName.visibility = View.VISIBLE
         activityImage.visibility = View.VISIBLE
         description.visibility = View.VISIBLE
-        visitedCheckbox.visibility = View.INVISIBLE
+        if(!fromServer){
+            visitedCheckbox.visibility = View.VISIBLE
+        } else {
+            visitedCheckbox.visibility = View.INVISIBLE
+        }
         loadingView.visibility = View.GONE
         retry.visibility = View.GONE
     }

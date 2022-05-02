@@ -111,7 +111,11 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
     private fun showViews(){
         pointOfInterestMap.visibility = View.VISIBLE
         pointOfInterestName.visibility = View.VISIBLE
-        visitedCheckbox.visibility = View.VISIBLE
+        if(!fromServer){
+            visitedCheckbox.visibility = View.VISIBLE
+        } else {
+            visitedCheckbox.visibility = View.INVISIBLE
+        }
         loadingView.visibility = View.GONE
         retry.visibility = View.GONE
     }

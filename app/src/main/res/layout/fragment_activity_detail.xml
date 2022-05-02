@@ -22,8 +22,7 @@
         android:id="@+id/activityImage"
         android:layout_width="411dp"
         android:layout_height="208dp"
-        android:layout_marginTop="20dp"
-        android:contentDescription="Activity picture"
+        android:contentDescription="@string/activity_picture"
         android:src="@drawable/ic_launcher_background"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/activityName"
@@ -37,18 +36,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="484dp"
-        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:text="Activity name"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/activityImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/visitedCheckbox"
-        app:layout_constraintHorizontal_bias="0.012"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activityImage" />
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
         android:id="@+id/visitedCheckbox"
@@ -57,12 +55,11 @@
         android:layout_marginBottom="472dp"
         android:text="@string/visited"
         android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/activityImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.979"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activityImage"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/description"
