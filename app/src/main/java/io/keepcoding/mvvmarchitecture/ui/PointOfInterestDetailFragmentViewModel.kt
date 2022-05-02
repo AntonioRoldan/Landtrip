@@ -31,7 +31,7 @@ class PointOfInterestDetailFragmentViewModel(private val context: Application, p
                 }
                 val accessToken: String? = tokenApiCall.await().accessToken
                 accessToken?.let {
-                    val pointOfInterestByIdApiCall = async { apiHelper.fetchPointOfInterestById(authorization = it, pointOfInterestId = id) }
+                    val pointOfInterestByIdApiCall = async { apiHelper.fetchPointOfInterestById(authorization = "Bearer $it", pointOfInterestId = id) }
                     val pointOfInterestResponse = pointOfInterestByIdApiCall.await()
                     val tmpPointOfInterestDetailViewModel: PointOfInterestViewModel = PointOfInterestViewModel(
                         name = pointOfInterestResponse.data?.name,

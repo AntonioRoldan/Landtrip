@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.recommended_trip_recycler_view_item.view.*
  */
 class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
 
-    private lateinit var activityViewModel: ActivityViewModel
+    private var activityViewModel: ActivityViewModel? = null
 
     private lateinit var id: String
 
@@ -63,7 +63,7 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_point_of_interest_detail, container, false)
+        return inflater.inflate(R.layout.fragment_activity_detail, container, false)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -88,8 +88,8 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
                 }
             })
         } else {
-            activityViewModel.latitude?.let { latitude ->
-                activityViewModel.longitude?.let { longitude ->
+            activityViewModel?.latitude?.let { latitude ->
+                activityViewModel?.longitude?.let { longitude ->
                     val activityPosition = LatLng(latitude, longitude)
                     googleMap.addMarker(
                         MarkerOptions()
@@ -154,21 +154,21 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun bindDataFromLocalToViews() {
-        activityName.text = activityViewModel.name
+        activityName.text = activityViewModel?.name
         context?.let {
             Glide.with(it)
-                .load(activityViewModel.image)
+                .load(activityViewModel?.image)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(activityImage)
         }
-        description.text = activityViewModel.shortDescription
+        description.text = activityViewModel?.shortDescription
     }
 
     private fun bindDataFromServerToViews(viewModel: ActivityViewModel?) {
         activityName.text = viewModel?.name
         context?.let {
             Glide.with(it)
-                .load(activityViewModel.image)
+                .load(activityViewModel?.image)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(activityImage)
         }

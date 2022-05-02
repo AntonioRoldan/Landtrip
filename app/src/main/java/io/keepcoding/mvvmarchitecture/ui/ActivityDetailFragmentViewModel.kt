@@ -1,6 +1,7 @@
 package io.keepcoding.mvvmarchitecture.ui
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,8 +31,9 @@ class ActivityDetailFragmentViewModel(private val context: Application, private 
                 }
                 val accessToken: String? = tokenApiCall.await().accessToken
                 accessToken?.let {
+                    Log.v("ACTIVITY ID", id)
                     val activityByIdApiCall =
-                        async { apiHelper.fetchActivityById(authorization = it, activityId = id) }
+                        async { apiHelper.fetchActivityById(authorization = "Bearer $it", activityId = id) }
                     val activityResponse = activityByIdApiCall.await()
                     val tmpActivityViewModel: ActivityViewModel = ActivityViewModel(
                         name = activityResponse.data?.name,
