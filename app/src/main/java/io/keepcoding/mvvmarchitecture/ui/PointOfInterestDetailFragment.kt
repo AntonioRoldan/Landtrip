@@ -167,8 +167,8 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun setUpMapFragment(){
-        val mapFragment: SupportMapFragment = childFragmentManager.findFragmentById(R.id.activityMap) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        val mapFragment: SupportMapFragment? = childFragmentManager.findFragmentById(R.id.pointOfInterestMap) as SupportMapFragment?
+        mapFragment?.getMapAsync(this)
     }
 
     private fun receiveArguments() {
