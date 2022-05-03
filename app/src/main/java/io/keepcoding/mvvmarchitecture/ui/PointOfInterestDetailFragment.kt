@@ -172,6 +172,9 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
         viewModel.getPointOfInterestDetailViewModel().observe(viewLifecycleOwner, Observer { resource ->
             when(resource.status){
                 Status.SUCCESS -> {
+                    resource.data?.let {  viewModel ->
+                        pointOfInterestViewModel = viewModel
+                    }
                     showViews()
                     bindDataFromServerToViews(resource.data)
                 }

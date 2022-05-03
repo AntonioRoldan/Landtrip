@@ -193,6 +193,7 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         viewModel.getActivityDetailViewModel().observe(viewLifecycleOwner, Observer {
             when(it.status){
                 Status.SUCCESS -> {
+                    activityViewModel = it.data
                     showViews()
                     bindDataFromServerToViews(it.data) // The data property from the resource class is our view model object that we pass
                 }

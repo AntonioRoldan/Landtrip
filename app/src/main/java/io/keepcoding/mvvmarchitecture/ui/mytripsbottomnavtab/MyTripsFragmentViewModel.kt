@@ -1,6 +1,7 @@
 package io.keepcoding.mvvmarchitecture.ui.mytripsbottomnavtab
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -41,6 +42,7 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
     fun saveActivity(tripRoomId: String, activityViewModel: ActivityViewModel) {
         viewModelScope.launch {
             try {
+                Log.v("Activity", activityViewModel.toString())
                 val activityEntity: TourActivityEntity = TourActivityEntity(
                     name = activityViewModel.name,
                     tripId = tripRoomId,
@@ -55,7 +57,7 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
                 )
                 val saveActivityDatabaseCall = async { localHelper.saveTourActivity(activityEntity) }
                 saveActivityDatabaseCall.await()
-                snackbar.postValue(Resource.success("Activity saved"))
+                snackbar.postValue(Resource.success("$activityViewModel.name saved"))
             } catch (e: Exception) {
                 snackbar.postValue(Resource.error(e.localizedMessage!!, e.localizedMessage!!))
             }
@@ -76,7 +78,7 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
                 )
                 val savePointOfInterestDatabaseCall = async { localHelper.savePointOfInterest(pointOfInterestEntity) }
                 savePointOfInterestDatabaseCall.await()
-                snackbar.postValue(Resource.success("Point of interest saved"))
+                snackbar.postValue(Resource.success("$pointOfInterestViewModel.name saved"))
             } catch (e: Exception) {
                 snackbar.postValue(Resource.error(e.localizedMessage!!, e.localizedMessage!!))
             }

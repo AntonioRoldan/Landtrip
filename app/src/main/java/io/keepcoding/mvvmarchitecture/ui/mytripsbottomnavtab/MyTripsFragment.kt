@@ -74,6 +74,7 @@ class MyTripsFragment : Fragment() {
             myTripsAdapter = MyTripsAdapter(context) {
                 when {
                     fromActivityDetail -> {
+                        Log.v("ACTIVITY", activityViewModel.toString())
                         activityViewModel?.let { activity ->
                             viewModel.saveActivity(it.id, activity)
                         }
@@ -92,7 +93,6 @@ class MyTripsFragment : Fragment() {
                     }
                 }
             }
-            Log.v("TRIPS", trips.toString())
             myTripsAdapter?.tripsItems = trips
         }
     }
@@ -153,6 +153,7 @@ class MyTripsFragment : Fragment() {
     private fun receiveArguments() {
         arguments?.let {
             fromActivityDetail = it.getBoolean(FragmentArguments.FROM_ACTIVITY_DETAIL)
+            Log.v(fromActivityDetail.toString(), fromActivityDetail.toString())
             fromPointOfInterestDetail = it.getBoolean(FragmentArguments.FROM_POINT_OF_INTEREST_DETAIL)
             if(fromActivityDetail){
                 activityViewModel = it.getParcelable(FragmentArguments.ACTIVITY_PARCELABLE)

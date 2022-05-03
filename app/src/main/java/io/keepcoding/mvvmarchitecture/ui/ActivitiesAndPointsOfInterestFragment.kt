@@ -80,7 +80,6 @@ class ActivitiesAndPointsOfInterestFragment : Fragment() {
                 val navController = findNavController()
                 val bundle = Bundle()
                 if(fromServer){
-                    Log.v("ACTIVITY ID", activityViewModel.id!!)
                     bundle.putString(FragmentArguments.ACTIVITY_ID, activityViewModel.id)
                 } else {
                     bundle.putParcelable(FragmentArguments.ACTIVITY_PARCELABLE, activityViewModel)

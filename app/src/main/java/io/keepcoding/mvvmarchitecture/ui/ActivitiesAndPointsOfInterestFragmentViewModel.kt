@@ -1,6 +1,7 @@
 package io.keepcoding.mvvmarchitecture.ui
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -124,6 +125,7 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                 pointsOfInterestViewModels?.forEach {
                     activitiesAndPointsOfInterestViewModels.add(it)
                 }
+                Log.v("ACTIVITIES", activitiesAndPointsOfInterestViewModels.toString())
                 activitiesAndPointsOfInterest.postValue(Resource.success(activitiesAndPointsOfInterestViewModels))
             } catch (e: Exception) {
                 activitiesAndPointsOfInterest.postValue(Resource.error(e.localizedMessage!!, null))
