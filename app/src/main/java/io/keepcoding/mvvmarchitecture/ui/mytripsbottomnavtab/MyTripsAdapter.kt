@@ -2,6 +2,7 @@ package io.keepcoding.mvvmarchitecture.ui.mytripsbottomnavtab
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,7 @@ class MyTripsAdapter(val context: Context, private val itemClickListener: ((Trip
 
     override fun onBindViewHolder(holder: MyTripsAdapter.TripViewHolder, position: Int) {
         val trip = tripsItems?.get(position)
+        Log.v("TRIP", trip.toString())
         holder.tripViewModel = trip
         holder.itemView.setOnClickListener(tripItemClickListener)
     }

@@ -11,7 +11,7 @@
         layout="@layout/loading_view" />
 
     <include
-        android:id="@+id/no_trips_added"
+        android:id="@+id/noTripsAdded"
         layout="@layout/trips_are_empty"
         android:visibility="invisible"
         />

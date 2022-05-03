@@ -99,7 +99,11 @@ class ActivitiesAndPointsOfInterestAdapter(val context: Context, private val act
     }
 
     override fun getItemViewType(position: Int): Int {
-        return activitiesAndPointsOfInterestItems!![position]!!.viewType
+        return if(!activitiesAndPointsOfInterestItems?.isEmpty()!!) {
+            activitiesAndPointsOfInterestItems!![position]!!.viewType
+        } else {
+            return 0
+        }
     }
 
 }

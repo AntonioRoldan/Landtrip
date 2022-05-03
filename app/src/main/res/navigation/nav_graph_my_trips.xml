@@ -45,14 +45,14 @@
     <fragment
         android:id="@+id/local_activity_detail_dest"
         android:name="io.keepcoding.mvvmarchitecture.ui.ActivityDetailFragment"
-        android:label="Activity title"
+        android:label="My Activity"
         tools:layout="@layout/fragment_activity_detail"
         >
     </fragment>
     <fragment
         android:id="@+id/local_point_of_interest_detail_dest"
         android:name="io.keepcoding.mvvmarchitecture.ui.PointOfInterestDetailFragment"
-        android:label="Activity title"
+        android:label="My Point Of Interest"
         tools:layout="@layout/fragment_point_of_interest_detail"
         >
 

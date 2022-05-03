@@ -92,8 +92,9 @@ class MyTripsFragment : Fragment() {
                     }
                 }
             }
+            Log.v("TRIPS", trips.toString())
+            myTripsAdapter?.tripsItems = trips
         }
-        myTripsAdapter?.tripsItems = trips
     }
 
     private fun observeTrips(){
@@ -103,13 +104,14 @@ class MyTripsFragment : Fragment() {
                 Status.SUCCESS -> {
                     it.data?.let { data ->
                         if(data.isEmpty()){
-                            no_trips_added.visibility = View.VISIBLE
+                            noTripsAdded.visibility = View.VISIBLE
                             loadingView.visibility = View.INVISIBLE
                             tripsList.visibility = View.INVISIBLE
                         } else {
-                            no_trips_added.visibility = View.GONE
+                            noTripsAdded.visibility = View.GONE
                             loadingView.visibility = View.GONE
                             tripsList.visibility = View.VISIBLE
+                            trips = data as MutableList<TripViewModel?>
                             setUpAdapter()
                             tripsList.adapter = myTripsAdapter
                         }
@@ -117,11 +119,11 @@ class MyTripsFragment : Fragment() {
                 }
                 Status.LOADING -> {
                     loadingView.visibility = View.VISIBLE
-                    no_trips_added.visibility = View.INVISIBLE
+                    noTripsAdded.visibility = View.INVISIBLE
                     tripsList.visibility = View.INVISIBLE
                 }
                 Status.ERROR -> {
-                    no_trips_added.visibility = View.INVISIBLE
+                    noTripsAdded.visibility = View.INVISIBLE
                     loadingView.visibility = View.INVISIBLE
                     tripsList.visibility = View.INVISIBLE
                 }

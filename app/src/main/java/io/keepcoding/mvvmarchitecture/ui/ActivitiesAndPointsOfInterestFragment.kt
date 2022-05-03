@@ -1,5 +1,6 @@
 package io.keepcoding.mvvmarchitecture.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import io.keepcoding.mvvmarchitecture.R
 import io.keepcoding.mvvmarchitecture.utils.*
 import kotlinx.android.synthetic.main.fragment_activities_and_points_of_interest.*
+import kotlinx.android.synthetic.main.trips_are_empty.*
 import kotlinx.android.synthetic.main.try_again_view.*
 
 
@@ -117,22 +119,33 @@ class ActivitiesAndPointsOfInterestFragment : Fragment() {
             activitiesAndPointsOfInterestViewModels.data?.let {
                 when(activitiesAndPointsOfInterestViewModels.status) {
                     Status.SUCCESS -> {
-                        activitiesAndPointsOfInterest = it
-                        activitiesAndPointsOfInterestLoadingView.visibility = View.GONE
-                        activitiesAndPointsOfInterestRetry.visibility = View.GONE
-                        activitiesAndPointsOfInterestList.visibility = View.VISIBLE
-                        setAdapter()
-                        activitiesAndPointsOfInterestList.adapter = activitiesAndPointsOfInterestAdapter
+                        if(it[0] == null){
+                            activitiesAndPointsOfInterestLoadingView.visibility = View.INVISIBLE
+                            activitiesAndPointsOfInterestRetry.visibility = View.INVISIBLE
+                            activitiesAndPointsOfInterestList.visibility = View.INVISIBLE
+                            noActivitiesAndPointsOfInterestAdded.visibility = View.VISIBLE
+                            emptyListLabel.text = "No activities or points of interest added"
+                        } else {
+                            activitiesAndPointsOfInterest = it
+                            activitiesAndPointsOfInterestLoadingView.visibility = View.GONE
+                            activitiesAndPointsOfInterestRetry.visibility = View.GONE
+                            activitiesAndPointsOfInterestList.visibility = View.VISIBLE
+                            noActivitiesAndPointsOfInterestAdded.visibility = View.INVISIBLE
+                            setAdapter()
+                            activitiesAndPointsOfInterestList.adapter = activitiesAndPointsOfInterestAdapter
+                        }
                     }
                     Status.LOADING -> {
                         activitiesAndPointsOfInterestRetry.visibility = View.INVISIBLE
                         activitiesAndPointsOfInterestLoadingView.visibility = View.VISIBLE
                         activitiesAndPointsOfInterestList.visibility = View.INVISIBLE
+                        noActivitiesAndPointsOfInterestAdded.visibility = View.INVISIBLE
                     }
                     Status.ERROR -> {
                         activitiesAndPointsOfInterestRetry.visibility = View.VISIBLE
                         activitiesAndPointsOfInterestLoadingView.visibility = View.INVISIBLE
                         activitiesAndPointsOfInterestList.visibility = View.INVISIBLE
+                        noActivitiesAndPointsOfInterestAdded.visibility = View.INVISIBLE
                     }
                 }
             }
