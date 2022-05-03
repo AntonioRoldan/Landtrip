@@ -25,6 +25,8 @@ object Constants {
 }
 
 object FragmentArguments {
+    const val FROM_ACTIVITY_DETAIL = "FROM_ACTIVITY_DETAIL"
+    const val FROM_POINT_OF_INTEREST_DETAIL = "FROM_POINT_OF_INTEREST_DETAIL"
     const val ACTIVITY_ID = ""
     const val POINT_OF_INTEREST_ID = ""
     const val TRIP_ID = ""

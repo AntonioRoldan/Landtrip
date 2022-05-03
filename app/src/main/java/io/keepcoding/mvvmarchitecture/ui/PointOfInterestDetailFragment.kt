@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -106,12 +107,25 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
         visitedCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
             viewModel.updateVisitedFieldOfPointOfInterestEntityFromLocal(isChecked)
         }
+        saveOrDeletePointOfInterestButton.setOnClickListener {
+            if(fromServer){
+                val navController = findNavController()
+                val bundle = Bundle()
+                bundle.putParcelable(FragmentArguments.POINT_OF_INTEREST_PARCELABLE, pointOfInterestViewModel)
+                bundle.putBoolean(FragmentArguments.FROM_POINT_OF_INTEREST_DETAIL, true)
+                navController.navigate(R.id.action_point_of_interest_detail_to_my_trips, bundle)
+            } else {
+                viewModel.deletePointOfInterest(id = id)
+            }
+        }
     }
 
     private fun showViews(){
         pointOfInterestMap.visibility = View.VISIBLE
         pointOfInterestName.visibility = View.VISIBLE
+        saveOrDeletePointOfInterestButton.visibility = View.VISIBLE
         if(!fromServer){
+            // Change fab's icon
             visitedCheckbox.visibility = View.VISIBLE
         } else {
             visitedCheckbox.visibility = View.INVISIBLE
@@ -124,6 +138,7 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
         pointOfInterestMap.visibility = View.INVISIBLE
         pointOfInterestName.visibility = View.INVISIBLE
         visitedCheckbox.visibility = View.INVISIBLE
+        saveOrDeletePointOfInterestButton.visibility = View.INVISIBLE
         loadingView.visibility = View.VISIBLE
         retry.visibility = View.INVISIBLE
     }
@@ -132,6 +147,7 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
         pointOfInterestMap.visibility = View.INVISIBLE
         pointOfInterestName.visibility = View.INVISIBLE
         visitedCheckbox.visibility = View.INVISIBLE
+        saveOrDeletePointOfInterestButton.visibility = View.INVISIBLE
         loadingView.visibility = View.INVISIBLE
         retry.visibility = View.VISIBLE
     }

@@ -1,33 +1,49 @@
 package io.keepcoding.mvvmarchitecture.ui.mytripsbottomnavtab
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.keepcoding.mvvmarchitecture.R
+import io.keepcoding.mvvmarchitecture.ui.ActivityViewModel
+import io.keepcoding.mvvmarchitecture.ui.PointOfInterestViewModel
+import io.keepcoding.mvvmarchitecture.ui.TripViewModel
+import io.keepcoding.mvvmarchitecture.utils.CustomViewModelFactory
+import io.keepcoding.mvvmarchitecture.utils.FragmentArguments
+import io.keepcoding.mvvmarchitecture.utils.Status
+import kotlinx.android.synthetic.main.fragment_my_trips.*
+import kotlinx.android.synthetic.main.fragment_my_trips.loadingView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MyTripsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyTripsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var fromActivityDetail: Boolean = false // If we are opening the fragment from activity or points of interest details screen
+
+    private var fromPointOfInterestDetail: Boolean = false
+
+    private var myTripsAdapter: MyTripsAdapter? = null
+
+    private var activityViewModel: ActivityViewModel? = null
+
+    private var pointOfInterestViewModel: PointOfInterestViewModel? = null
+
+    private var trips: MutableList<TripViewModel?> = mutableListOf()
+
+    private val viewModel: MyTripsFragmentViewModel by lazy {
+        val factory = CustomViewModelFactory(application = requireActivity().application)
+        ViewModelProvider(this, factory)[MyTripsFragmentViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("From my trips", "From my trips")
-
+        receiveArguments()
     }
 
     override fun onCreateView(
@@ -41,26 +57,106 @@ class MyTripsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.setBackgroundColor(Color.RED)
+        setUpRecyclerView()
+        setUpObservers()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MyTripsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MyTripsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun setUpRecyclerView(){
+        tripsList.layoutManager = LinearLayoutManager(context)
+    }
+
+    private fun fetchData() {
+        viewModel.fetchTripsFromLocal()
+    }
+
+    private fun setUpAdapter(){
+        context?.let { context ->
+            myTripsAdapter = MyTripsAdapter(context) {
+                when {
+                    fromActivityDetail -> {
+                        activityViewModel?.let { activity ->
+                            viewModel.saveActivity(it.id, activity)
+                        }
+                    }
+                    fromPointOfInterestDetail -> {
+                        pointOfInterestViewModel?.let { pointOfInterest ->
+                            viewModel.savePointOfInterest(it.id, pointOfInterest)
+                        }
+                    }
+                    else -> {
+                        val navController = findNavController()
+                        val bundle = Bundle()
+                        bundle.putBoolean(FragmentArguments.FROM_SERVER, false)
+                        bundle.putString(FragmentArguments.TRIP_ID, it.id)
+                        navController.navigate(R.id.action_my_trips_to_local_activities_and_points_of_interest, bundle)
+                    }
                 }
             }
+        }
+        myTripsAdapter?.tripsItems = trips
+    }
+
+    private fun observeTrips(){
+        fetchData()
+        viewModel.getTrips().observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Status.SUCCESS -> {
+                    it.data?.let { data ->
+                        if(data.isEmpty()){
+                            no_trips_added.visibility = View.VISIBLE
+                            loadingView.visibility = View.INVISIBLE
+                            tripsList.visibility = View.INVISIBLE
+                        } else {
+                            no_trips_added.visibility = View.GONE
+                            loadingView.visibility = View.GONE
+                            tripsList.visibility = View.VISIBLE
+                            setUpAdapter()
+                            tripsList.adapter = myTripsAdapter
+                        }
+                    }
+                }
+                Status.LOADING -> {
+                    loadingView.visibility = View.VISIBLE
+                    no_trips_added.visibility = View.INVISIBLE
+                    tripsList.visibility = View.INVISIBLE
+                }
+                Status.ERROR -> {
+                    no_trips_added.visibility = View.INVISIBLE
+                    loadingView.visibility = View.INVISIBLE
+                    tripsList.visibility = View.INVISIBLE
+                }
+            }
+        })
+    }
+
+    private fun observeSnackbar(){
+        viewModel.getSnackbar().observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Status.SUCCESS -> {
+                    Toast.makeText(context, it.data, Toast.LENGTH_SHORT).show()
+                }
+                Status.ERROR -> {
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+                else -> {}
+            }
+        })
+    }
+
+    private fun setUpObservers() {
+        observeTrips()
+        observeSnackbar()
+    }
+
+    private fun receiveArguments() {
+        arguments?.let {
+            fromActivityDetail = it.getBoolean(FragmentArguments.FROM_ACTIVITY_DETAIL)
+            fromPointOfInterestDetail = it.getBoolean(FragmentArguments.FROM_POINT_OF_INTEREST_DETAIL)
+            if(fromActivityDetail){
+                activityViewModel = it.getParcelable(FragmentArguments.ACTIVITY_PARCELABLE)
+            } else if(fromPointOfInterestDetail){
+                pointOfInterestViewModel = it.getParcelable(FragmentArguments.POINT_OF_INTEREST_PARCELABLE)
+            }
+        }
     }
 }

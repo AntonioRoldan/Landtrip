@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -107,7 +108,9 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         activityName.visibility = View.VISIBLE
         activityImage.visibility = View.VISIBLE
         description.visibility = View.VISIBLE
+        saveOrDeleteActivityButton.visibility = View.VISIBLE
         if(!fromServer){
+            // Change fab's icon
             visitedCheckbox.visibility = View.VISIBLE
         } else {
             visitedCheckbox.visibility = View.INVISIBLE
@@ -122,6 +125,8 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         activityImage.visibility = View.INVISIBLE
         description.visibility = View.INVISIBLE
         visitedCheckbox.visibility = View.INVISIBLE
+        saveOrDeleteActivityButton.visibility = View.INVISIBLE
+
         loadingView.visibility = View.VISIBLE
         retry.visibility = View.INVISIBLE
     }
@@ -132,6 +137,7 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         activityImage.visibility = View.INVISIBLE
         description.visibility = View.INVISIBLE
         visitedCheckbox.visibility = View.INVISIBLE
+        saveOrDeleteActivityButton.visibility = View.INVISIBLE
         loadingView.visibility = View.INVISIBLE
         retry.visibility = View.VISIBLE
     }
@@ -139,6 +145,17 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
     private fun setUpListeners(){
         visitedCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
             viewModel.updateVisitedFieldOfActivityEntityFromLocal(isChecked)
+        }
+        saveOrDeleteActivityButton.setOnClickListener {
+            if(fromServer){
+                val navController = findNavController()
+                val bundle = Bundle()
+                bundle.putParcelable(FragmentArguments.ACTIVITY_PARCELABLE, activityViewModel)
+                bundle.putBoolean(FragmentArguments.FROM_ACTIVITY_DETAIL, true)
+                navController.navigate(R.id.action_activity_detail_to_my_trips, bundle)
+            } else {
+                viewModel.deleteActivity(id = id)
+            }
         }
     }
 

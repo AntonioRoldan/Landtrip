@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.keepcoding.mvvmarchitecture.R
-import io.keepcoding.mvvmarchitecture.ui.homebottomnavtab.RecommendedTripViewModel
 import io.keepcoding.mvvmarchitecture.utils.Constants
 import kotlinx.android.synthetic.main.activity_recycler_view_item.view.*
 import kotlinx.android.synthetic.main.point_of_interest_recycler_view_item.view.*
