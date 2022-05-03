@@ -5,20 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import io.keepcoding.mvvmarchitecture.R
 import io.keepcoding.mvvmarchitecture.utils.CustomViewModelFactory
+import io.keepcoding.mvvmarchitecture.utils.Status
+import kotlinx.android.synthetic.main.fragment_add_trip.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AddTripFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AddTripFragment : Fragment() {
 
     private val viewModel: AddTripFragmentViewModel by lazy {
@@ -34,23 +29,31 @@ class AddTripFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_add_trip, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddTripFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddTripFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpListeners()
+        setUpObservers()
+    }
+
+    private fun setUpObservers() {
+        viewModel.getSnackbar().observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Status.SUCCESS -> {
+                    Toast.makeText(context, it.data, Toast.LENGTH_SHORT).show()
                 }
+                Status.ERROR -> {
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+                else -> {}
             }
+        })
+    }
+
+    private fun setUpListeners(){
+        addTripButton.setOnClickListener {
+            setTripNameEditText.text?.let {
+                viewModel.saveTrip(it.toString())
+            }
+        }
     }
 }
