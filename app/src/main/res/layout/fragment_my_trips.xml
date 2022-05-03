@@ -12,7 +12,7 @@
 
     <include
         android:id="@+id/no_trips_added"
-        layout="@layout/try_again_view"
+        layout="@layout/trips_are_empty"
         android:visibility="invisible"
         />
 
