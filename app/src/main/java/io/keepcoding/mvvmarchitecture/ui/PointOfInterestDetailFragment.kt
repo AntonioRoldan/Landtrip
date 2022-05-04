@@ -26,11 +26,7 @@ import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.retry
 import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.visitedCheckbox
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PointOfInterestDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
 
     private val viewModel: PointOfInterestDetailFragmentViewModel by lazy {
