@@ -58,7 +58,7 @@ class ActivityDetailFragmentViewModel(private val context: Application, private 
     fun deleteActivity(id: String){
         viewModelScope.launch {
             try {
-                val deleteActivityDatabaseCall = async { localHelper.deleteTourActivity(id)}
+                val deleteActivityDatabaseCall = async { localHelper.deleteTourActivity(id) }
                 deleteActivityDatabaseCall.await()
                 snackbar.postValue(Resource.success("Activity deleted"))
             } catch (e: Exception) {

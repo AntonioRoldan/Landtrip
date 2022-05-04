@@ -111,13 +111,12 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                 activitiesAndPointsOfInterest.postValue(Resource.loading(null))
                 val tripDatabaseCall = async {localHelper.getTripWithToursActivitiesAndPointsOfInterest(tripId) }
                 val tripWithActivitiesAndPointsOfInterest: TripEntity = tripDatabaseCall.await()
-                Log.v("TRIP ENTITY", tripWithActivitiesAndPointsOfInterest.toString())
                 val activitiesAndPointsOfInterestViewModels: MutableList<ActivitiesAndPointOfInterestItemInterface?> = mutableListOf(null)
                 val pointsOfInterestViewModels = tripWithActivitiesAndPointsOfInterest.pointsOfInterest?.map {
-                    PointOfInterestViewModel(name = it.name, category = it.category, rank = it.rank, latitude = it.latitude, longitude = it.longitude, visited = it.visited)
+                    PointOfInterestViewModel(id = it.id, name = it.name, category = it.category, rank = it.rank, latitude = it.latitude, longitude = it.longitude, visited = it.visited)
                 }
                 val activitiesViewModels = tripWithActivitiesAndPointsOfInterest.toursAndActivities?.map {
-                    ActivityViewModel(name = it.name, rating = it.rating.toString(), price = "", currencyCode = "", image = it.image, shortDescription = it.shortDescription, latitude = it.latitude, longitude = it.longitude)
+                    ActivityViewModel(id = it.id, name = it.name, rating = it.rating.toString(), price = "", currencyCode = "", image = it.image, shortDescription = it.shortDescription, latitude = it.latitude, longitude = it.longitude)
                 }
                 activitiesViewModels?.forEach {
                     activitiesAndPointsOfInterestViewModels.add(it)
@@ -126,7 +125,6 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                     activitiesAndPointsOfInterestViewModels.add(it)
                 }
                 val activitiesAndPointsOfInterestViewModelsNonNull = activitiesAndPointsOfInterestViewModels.filterNotNull()
-                Log.v("ACTIVITIES", activitiesAndPointsOfInterestViewModelsNonNull.toString())
                 activitiesAndPointsOfInterest.postValue(Resource.success(activitiesAndPointsOfInterestViewModelsNonNull))
             } catch (e: Exception) {
                 activitiesAndPointsOfInterest.postValue(Resource.error(e.localizedMessage!!, null))

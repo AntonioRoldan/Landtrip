@@ -40,8 +40,7 @@ abstract class DataNameDao {
     abstract fun deleteTrip(entity: TripEntity)
 
     @Query("DELETE FROM tours_and_activities_table WHERE id = :id")
-    abstract fun deleteTourActivity(id: String)
-
+    abstract fun  deleteTourActivity(id: String)
 
     @Query("DELETE FROM points_of_interest_table WHERE id = :id")
     abstract fun deletePointOfInterest(id: String)
