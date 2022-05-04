@@ -207,11 +207,6 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
         })
     }
 
-    override fun onResume() {
-        super.onResume()
-        fetchData()
-    }
-
     private fun setUpMapFragment(){
         val mapFragment: SupportMapFragment? = childFragmentManager.findFragmentById(R.id.pointOfInterestMap) as SupportMapFragment?
         mapFragment?.getMapAsync(this)

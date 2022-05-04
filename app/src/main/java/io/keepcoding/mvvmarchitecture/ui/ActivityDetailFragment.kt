@@ -178,11 +178,6 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         description.text = activityViewModel?.shortDescription
     }
 
-    override fun onResume() {
-        super.onResume()
-        fetchData()
-    }
-
     private fun bindDataFromServerToViews(viewModel: ActivityViewModel?) {
         activityName.text = viewModel?.name
         context?.let {
@@ -197,11 +192,14 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
     private fun observeSnackbar() {
         viewModel.getSnackbar().observe(viewLifecycleOwner, Observer {
             when(it.status){
+                Status.SUCCESS -> {
+                    Toast.makeText(context, it.data, Toast.LENGTH_SHORT).show()
+                }
                 Status.ERROR -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    Toast.makeText(context, it.data, Toast.LENGTH_SHORT).show()
+
                 }
             }
         })

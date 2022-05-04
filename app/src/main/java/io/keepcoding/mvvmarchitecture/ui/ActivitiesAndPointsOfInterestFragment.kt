@@ -72,7 +72,10 @@ class ActivitiesAndPointsOfInterestFragment : Fragment() {
         }
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        fetchData()
+    }
 
     private fun setAdapter(){
         context?.let {
