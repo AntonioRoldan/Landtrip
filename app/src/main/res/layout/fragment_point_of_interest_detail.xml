@@ -9,17 +9,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <include
-        android:id="@+id/loadingView"
-        layout="@layout/loading_view" />
-
-    <include
-        android:id="@+id/retry"
-        layout="@layout/try_again_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible" />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/pointOfInterestMap"
         android:name="com.google.android.gms.maps.SupportMapFragment"
