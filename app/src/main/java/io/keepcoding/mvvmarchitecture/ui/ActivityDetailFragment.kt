@@ -164,6 +164,7 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         if(!fromServer){
             showViews()
             bindDataFromLocalToViews()
+            visitedCheckbox.isChecked = activityViewModel?.visited ?: false
         }
     }
 

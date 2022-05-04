@@ -30,10 +30,10 @@ abstract class DataNameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertPointOfInterest(pointOfInterest: PointOfInterestEntity)
 
-    @Query("UPDATE tours_and_activities_table SET finished = :finished")
+    @Query("UPDATE tours_and_activities_table SET finished = :finished WHERE id = :id")
     abstract fun updateTourActivity(id: String, finished: Boolean)
 
-    @Query("UPDATE points_of_interest_table SET visited = :visited")
+    @Query("UPDATE points_of_interest_table SET visited = :visited WHERE id = :id")
     abstract fun updatePointOfInterest(id: String, visited: Boolean)
 
     @Delete

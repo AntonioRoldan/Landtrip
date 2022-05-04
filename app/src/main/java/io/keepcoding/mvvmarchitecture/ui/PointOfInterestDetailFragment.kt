@@ -19,7 +19,11 @@ import io.keepcoding.mvvmarchitecture.R
 import io.keepcoding.mvvmarchitecture.utils.CustomViewModelFactory
 import io.keepcoding.mvvmarchitecture.utils.FragmentArguments
 import io.keepcoding.mvvmarchitecture.utils.Status
+import kotlinx.android.synthetic.main.fragment_activity_detail.*
 import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.*
+import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.loadingView
+import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.retry
+import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.visitedCheckbox
 
 
 /**
@@ -157,6 +161,7 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
         if(!fromServer) {
             showViews()
             bindDataFromLocalToViews()
+            visitedCheckbox.isChecked = pointOfInterestViewModel.visited ?: false
         }
     }
 
