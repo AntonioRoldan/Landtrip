@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -177,6 +178,11 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         description.text = activityViewModel?.shortDescription
     }
 
+    override fun onResume() {
+        super.onResume()
+        fetchData()
+    }
+
     private fun bindDataFromServerToViews(viewModel: ActivityViewModel?) {
         activityName.text = viewModel?.name
         context?.let {
@@ -188,7 +194,20 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         description.text = viewModel?.shortDescription
     }
 
-    private fun setUpObservers(){
+    private fun observeSnackbar() {
+        viewModel.getSnackbar().observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Status.ERROR -> {
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(context, it.data, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+    private fun observeActivityViewModels(){
         fetchData()
         viewModel.getActivityDetailViewModel().observe(viewLifecycleOwner, Observer {
             when(it.status){
@@ -207,6 +226,11 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
         })
     }
 
+    private fun setUpObservers(){
+        observeActivityViewModels()
+        observeSnackbar()
+    }
+
     private fun setUpMapFragment(){
         val mapFragment: SupportMapFragment? = childFragmentManager.findFragmentById(R.id.activityMap) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
@@ -219,10 +243,9 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
                 it.getParcelable<ActivityViewModel>(FragmentArguments.ACTIVITY_PARCELABLE)?.let { parcelable ->
                     activityViewModel = parcelable
                 }
-            } else{
-                it.getString(FragmentArguments.ACTIVITY_ID)?.let { activityId ->
-                    id = activityId
-                }
+            }
+            it.getString(FragmentArguments.ACTIVITY_ID)?.let { activityId ->
+                id = activityId
             }
         }
     }

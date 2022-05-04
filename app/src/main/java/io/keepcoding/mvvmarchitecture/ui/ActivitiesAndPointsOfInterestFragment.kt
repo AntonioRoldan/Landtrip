@@ -79,23 +79,17 @@ class ActivitiesAndPointsOfInterestFragment : Fragment() {
             activitiesAndPointsOfInterestAdapter = ActivitiesAndPointsOfInterestAdapter(it, { activityViewModel ->
                 val navController = findNavController()
                 val bundle = Bundle()
-                if(fromServer){
-                    bundle.putString(FragmentArguments.ACTIVITY_ID, activityViewModel.id)
-                } else {
-                    bundle.putParcelable(FragmentArguments.ACTIVITY_PARCELABLE, activityViewModel)
-                }
+                bundle.putString(FragmentArguments.ACTIVITY_ID, activityViewModel.id)
+                bundle.putParcelable(FragmentArguments.ACTIVITY_PARCELABLE, activityViewModel)
                 bundle.putBoolean(FragmentArguments.FROM_SERVER, fromServer)
-                navController.navigate(R.id.action_activities_and_points_of_interest_to_activities_detail, bundle)
+                navController.navigate(R.id.local_activities_and_points_of_interest_to_local_activity_detail, bundle)
             }, { pointOfInterestViewModel ->
                 val navController = findNavController()
                 val bundle = Bundle()
-                if(fromServer){
-                    bundle.putString(FragmentArguments.POINT_OF_INTEREST_ID, pointOfInterestViewModel.id)
-                } else {
-                    bundle.putParcelable(FragmentArguments.POINT_OF_INTEREST_PARCELABLE, pointOfInterestViewModel)
-                }
+                bundle.putString(FragmentArguments.POINT_OF_INTEREST_ID, pointOfInterestViewModel.id)
+                bundle.putParcelable(FragmentArguments.POINT_OF_INTEREST_PARCELABLE, pointOfInterestViewModel)
                 bundle.putBoolean(FragmentArguments.FROM_SERVER, fromServer)
-                navController.navigate(R.id.action_activities_and_points_of_interest_to_point_of_interest_detail, bundle)
+                navController.navigate(R.id.local_activities_and_points_of_interest_to_local_point_of_interest_detail, bundle)
             })
             activitiesAndPointsOfInterestAdapter?.activitiesAndPointsOfInterestItems = activitiesAndPointsOfInterest
         }

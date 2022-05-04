@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import io.keepcoding.mvvmarchitecture.domain.TripEntity
 import io.keepcoding.mvvmarchitecture.repository.local.LocalHelper
 import io.keepcoding.mvvmarchitecture.repository.remote.ApiHelper
-import io.keepcoding.mvvmarchitecture.ui.homebottomnavtab.RecommendedTripViewModel
 import io.keepcoding.mvvmarchitecture.utils.Api
 import io.keepcoding.mvvmarchitecture.utils.Resource
 import kotlinx.coroutines.async
@@ -112,6 +111,7 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                 activitiesAndPointsOfInterest.postValue(Resource.loading(null))
                 val tripDatabaseCall = async {localHelper.getTripWithToursActivitiesAndPointsOfInterest(tripId) }
                 val tripWithActivitiesAndPointsOfInterest: TripEntity = tripDatabaseCall.await()
+                Log.v("TRIP ENTITY", tripWithActivitiesAndPointsOfInterest.toString())
                 val activitiesAndPointsOfInterestViewModels: MutableList<ActivitiesAndPointOfInterestItemInterface?> = mutableListOf(null)
                 val pointsOfInterestViewModels = tripWithActivitiesAndPointsOfInterest.pointsOfInterest?.map {
                     PointOfInterestViewModel(name = it.name, category = it.category, rank = it.rank, latitude = it.latitude, longitude = it.longitude, visited = it.visited)
@@ -125,8 +125,9 @@ class ActivitiesAndPointsOfInterestFragmentViewModel(private val context: Applic
                 pointsOfInterestViewModels?.forEach {
                     activitiesAndPointsOfInterestViewModels.add(it)
                 }
-                Log.v("ACTIVITIES", activitiesAndPointsOfInterestViewModels.toString())
-                activitiesAndPointsOfInterest.postValue(Resource.success(activitiesAndPointsOfInterestViewModels))
+                val activitiesAndPointsOfInterestViewModelsNonNull = activitiesAndPointsOfInterestViewModels.filterNotNull()
+                Log.v("ACTIVITIES", activitiesAndPointsOfInterestViewModelsNonNull.toString())
+                activitiesAndPointsOfInterest.postValue(Resource.success(activitiesAndPointsOfInterestViewModelsNonNull))
             } catch (e: Exception) {
                 activitiesAndPointsOfInterest.postValue(Resource.error(e.localizedMessage!!, null))
             }

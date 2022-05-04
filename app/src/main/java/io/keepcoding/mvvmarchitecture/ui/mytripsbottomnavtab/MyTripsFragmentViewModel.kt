@@ -57,7 +57,7 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
                 )
                 val saveActivityDatabaseCall = async { localHelper.saveTourActivity(activityEntity) }
                 saveActivityDatabaseCall.await()
-                snackbar.postValue(Resource.success("$activityViewModel.name saved"))
+                snackbar.postValue(Resource.success("Activity saved"))
             } catch (e: Exception) {
                 snackbar.postValue(Resource.error(e.localizedMessage!!, e.localizedMessage!!))
             }
@@ -78,7 +78,7 @@ class MyTripsFragmentViewModel(private val context: Application, private val api
                 )
                 val savePointOfInterestDatabaseCall = async { localHelper.savePointOfInterest(pointOfInterestEntity) }
                 savePointOfInterestDatabaseCall.await()
-                snackbar.postValue(Resource.success("$pointOfInterestViewModel.name saved"))
+                snackbar.postValue(Resource.success("Point of interest saved"))
             } catch (e: Exception) {
                 snackbar.postValue(Resource.error(e.localizedMessage!!, e.localizedMessage!!))
             }

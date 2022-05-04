@@ -27,7 +27,7 @@ class LocalHelperImpl(private val context: Context) : LocalHelper {
     override suspend fun getTripWithToursActivitiesAndPointsOfInterest(tripId: String): TripEntity {
         var trip: TripEntity
         withContext(Dispatchers.IO){
-            trip = appDatabase.dataNameDao().getTrip(tripId)
+            trip = appDatabase.dataNameDao().getLocalTripWithToursActivitiesAndPointsOfInterest(tripId)
         }
         return trip
     }
