@@ -31,10 +31,10 @@ abstract class DataNameDao {
     abstract fun insertPointOfInterest(pointOfInterest: PointOfInterestEntity)
 
     @Query("UPDATE tours_and_activities_table SET finished = :finished")
-    abstract fun updateTourActivity(finished: Boolean)
+    abstract fun updateTourActivity(id: String, finished: Boolean)
 
     @Query("UPDATE points_of_interest_table SET visited = :visited")
-    abstract fun updatePointOfInterest(visited: Boolean)
+    abstract fun updatePointOfInterest(id: String, visited: Boolean)
 
     @Delete
     abstract fun deleteTrip(entity: TripEntity)

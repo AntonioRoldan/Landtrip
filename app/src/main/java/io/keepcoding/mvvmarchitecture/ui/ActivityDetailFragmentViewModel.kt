@@ -67,10 +67,10 @@ class ActivityDetailFragmentViewModel(private val context: Application, private 
         }
     }
 
-    fun updateVisitedFieldOfActivityEntityFromLocal(visited: Boolean) {
+    fun updateVisitedFieldOfActivityEntityFromLocal(id: String, visited: Boolean) {
         viewModelScope.launch {
             try {
-                val updateVisitedFieldFromActivityEntityDatabaseCall = async { localHelper.updateTourActivity(visited) }
+                val updateVisitedFieldFromActivityEntityDatabaseCall = async { localHelper.updateTourActivity(id, visited) }
                 updateVisitedFieldFromActivityEntityDatabaseCall.await()
                 snackbar.postValue(Resource.success("Visited checked"))
             } catch (e: Exception) {

@@ -61,16 +61,16 @@ class LocalHelperImpl(private val context: Context) : LocalHelper {
     }
 
     @OptIn(InternalCoroutinesApi::class)
-    override suspend fun updateTourActivity(finished: Boolean) {
+    override suspend fun updateTourActivity(id: String, finished: Boolean) {
         withContext(Dispatchers.IO){
-            appDatabase.dataNameDao().updateTourActivity(finished)
+            appDatabase.dataNameDao().updateTourActivity(id, finished)
         }
     }
 
     @OptIn(InternalCoroutinesApi::class)
-    override suspend fun updatePointOfInterest(visited: Boolean) {
+    override suspend fun updatePointOfInterest(id: String, visited: Boolean) {
         withContext(Dispatchers.IO) {
-            appDatabase.dataNameDao().updatePointOfInterest(visited)
+            appDatabase.dataNameDao().updatePointOfInterest(id, visited)
         }
     }
 

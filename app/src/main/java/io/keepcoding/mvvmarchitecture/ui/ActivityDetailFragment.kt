@@ -145,7 +145,7 @@ class ActivityDetailFragment : Fragment(), OnMapReadyCallback {
 
     private fun setUpListeners(){
         visitedCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
-            viewModel.updateVisitedFieldOfActivityEntityFromLocal(isChecked)
+            viewModel.updateVisitedFieldOfActivityEntityFromLocal(id, isChecked)
         }
         saveOrDeleteActivityButton.setOnClickListener {
             if(fromServer){

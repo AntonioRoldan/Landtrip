@@ -50,10 +50,10 @@ class PointOfInterestDetailFragmentViewModel(private val context: Application, p
         }
     }
 
-    fun updateVisitedFieldOfPointOfInterestEntityFromLocal(visited: Boolean) {
+    fun updateVisitedFieldOfPointOfInterestEntityFromLocal(id: String, visited: Boolean) {
         viewModelScope.launch {
             try {
-                val updateVisitedFieldFromPointOfInterestEntityDatabaseCall = async { localHelper.updatePointOfInterest(visited) }
+                val updateVisitedFieldFromPointOfInterestEntityDatabaseCall = async { localHelper.updatePointOfInterest(id, visited) }
                 updateVisitedFieldFromPointOfInterestEntityDatabaseCall.await()
                 snackbar.postValue(Resource.success("Visited checked"))
             } catch (e: Exception) {

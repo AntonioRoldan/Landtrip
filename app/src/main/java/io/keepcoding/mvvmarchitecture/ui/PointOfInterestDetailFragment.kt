@@ -106,7 +106,7 @@ class PointOfInterestDetailFragment : Fragment(), OnMapReadyCallback {
 
     private fun setUpListeners(){
         visitedCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
-            viewModel.updateVisitedFieldOfPointOfInterestEntityFromLocal(isChecked)
+            viewModel.updateVisitedFieldOfPointOfInterestEntityFromLocal(id, isChecked)
         }
         saveOrDeletePointOfInterestButton.setOnClickListener {
             if(fromServer){

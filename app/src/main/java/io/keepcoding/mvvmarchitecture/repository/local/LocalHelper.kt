@@ -19,9 +19,9 @@ interface LocalHelper {
 
     suspend fun savePointOfInterest(pointOfInterestEntity: PointOfInterestEntity)
 
-    suspend fun updateTourActivity(finished: Boolean)
+    suspend fun updateTourActivity(id: String, finished: Boolean)
 
-    suspend fun updatePointOfInterest(visited: Boolean)
+    suspend fun updatePointOfInterest(id:String, visited: Boolean)
 
     suspend fun deleteTourActivity(id: String)
 
