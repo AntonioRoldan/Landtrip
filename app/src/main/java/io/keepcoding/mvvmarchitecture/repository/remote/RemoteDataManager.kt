@@ -14,7 +14,7 @@ class RemoteDataManager {
     val geoLocationApi: GeoLocationApi
 
     init {
-        val timeout: Long = 6 * 1000
+        val timeout: Long = 10 * 1000
 
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY

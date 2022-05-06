@@ -2,10 +2,9 @@ package io.keepcoding.mvvmarchitecture.ui.homebottomnavtab
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -19,15 +18,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.loading_view.*
 import kotlinx.android.synthetic.main.try_again_view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
 
     private var recommendedTrips: List<RecommendedTripViewModel?> = mutableListOf()
@@ -41,7 +32,37 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.search_destinations, menu)
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(searchValue: String?): Boolean {
+                val navController = findNavController()
+                val bundle: Bundle = Bundle()
+                bundle.putString(FragmentArguments.CITY_NAME, searchValue)
+                bundle.putBoolean(FragmentArguments.FROM_SERVER, true)
+                navController.navigate(R.id.action_home_to_activities_and_points_of_interest, bundle)
+                return true
+            }
+
+            override fun onQueryTextChange(searchValue: String?): Boolean {
+                return false // We won't implement this one
+            }
+        })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.action_search -> { return true }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

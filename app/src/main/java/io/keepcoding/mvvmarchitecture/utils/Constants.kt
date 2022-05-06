@@ -1,6 +1,7 @@
 package io.keepcoding.mvvmarchitecture.utils
 
 import io.keepcoding.mvvmarchitecture.BuildConfig
+import kotlin.random.Random
 
 
 const val REQUEST_CODE = 100
@@ -19,7 +20,7 @@ object Api {
 }
 
 object Constants {
-    var CITY_CODE = "MAD"
+    var CITY_CODE = listOf("MAD", "PAR", "LON")[Random.nextInt(3)]
     const val ACTIVITY_VIEW_TYPE = 0
     const val POINT_OF_INTEREST_VIEW_TYPE = 1
 }

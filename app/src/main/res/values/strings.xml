@@ -37,4 +37,5 @@
     <string name="activity_picture">Activity picture</string>
     <string name="there_are_no_added_trips">There are no added trips</string>
     <string name="add_trip">Add trip</string>
+    <string name="search">Search</string>
 </resources>

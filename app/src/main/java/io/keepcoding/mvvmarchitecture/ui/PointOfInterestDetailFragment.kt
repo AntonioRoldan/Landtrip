@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -19,7 +18,6 @@ import io.keepcoding.mvvmarchitecture.R
 import io.keepcoding.mvvmarchitecture.utils.CustomViewModelFactory
 import io.keepcoding.mvvmarchitecture.utils.FragmentArguments
 import io.keepcoding.mvvmarchitecture.utils.Status
-import kotlinx.android.synthetic.main.fragment_activity_detail.*
 import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.*
 import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.loadingView
 import kotlinx.android.synthetic.main.fragment_point_of_interest_detail.retry

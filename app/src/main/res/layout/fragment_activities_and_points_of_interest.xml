@@ -6,11 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.ActivitiesAndPointsOfInterestFragment">
     <include
-        android:id="@+id/activitiesAndPointsOfInterestLoadingView"
+        android:id="@+id/loadingView"
         layout="@layout/loading_view" />
 
     <include
-        android:id="@+id/activitiesAndPointsOfInterestRetry"
+        android:id="@+id/retry"
         layout="@layout/try_again_view"
         android:visibility="invisible"
         />
